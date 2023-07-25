@@ -35,45 +35,46 @@ class DetailFragment : Fragment() {
         var liked = view.findViewById<ImageButton>(R.id.btnLike)
         var disliked = view.findViewById<ImageButton>(R.id.btnDislike)
 
-        Log.d("debug", "Setting values of project")
-        binding.projTitle.text =  Project.projects[position].title
-        binding.projDesc.text = Project.projects[position].description
-        binding.projAuthors.text =  "Authors: " + Project.projects[position].authors
-        binding.projUrls.text =  "URLs: " + Project.projects[position].urls
+        Log.d("debug", "Setting values of technique")
+        binding.techniqueTitle.text =  Technique.techniques[position].title
+        binding.techniqueDesc.text = Technique.techniques[position].description
+        binding.techniqueAuthors.text =  "Authors: " + Technique.techniques[position].authors
+//        binding.techniqueIngredientslist.text =  mutableListOf(Technique.techniques[position].ingredients)
+//        binding.techniqueStepslist.text = mutableListOf(Technique.techniques[position].steps)
+        // add thumbnail binding
         changeLikedImage(view, position)
-        binding.projKeywords.text = "Keywords: " + Project.projects[position].keywords
-        binding.projCreatedDate.text = "Created on: " + Project.projects[position].dateCreated
+//        binding.techniqueTagslist.text = mutableListOf(Technique.techniques[position].tags)
 
         Log.d("debug", "Setting listeners")
-        binding.editProj.setOnClickListener{
-            val action = DetailFragmentDirections.actionDetailFragmentToEditFragment(position)
-            it.findNavController().navigate(action)
-            Log.d("navigation", "Navigated to edit screen")
-        }
+//        binding.editTechnique.setOnClickListener{
+//            val action = DetailFragmentDirections.actionDetailFragmentToEditFragment(position)
+//            it.findNavController().navigate(action)
+//            Log.d("navigation", "Navigated to edit screen")
+//        }
         liked.setOnClickListener { onClickedStar(view, position) }
         disliked.setOnClickListener { onClickedStar(view, position) }
     }
 
-    // method that toggles the value of project isLiked field based on a click event
+    // method that toggles the value of technique isLiked field based on a click event
     private fun onClickedStar(view: View, position:Int) {
         Log.d("event", "Clicked Star")
-        Project.projects[position].isLiked = !Project.projects[position].isLiked
+        Technique.techniques[position].isLiked = !Technique.techniques[position].isLiked
         changeLikedImage(view, position)
     }
 
-    // method that changes the image per the value of the project isLiked field
+    // method that changes the image per the value of the technique isLiked field
     private fun changeLikedImage(view: View, position:Int){
-        val projLiked =  view.findViewById<ImageButton>(R.id.btnLike)
-        val projDisliked =  view.findViewById<ImageButton>(R.id.btnDislike)
-        if (Project.projects[position].isLiked) {
-            Log.d("changes", "Project liked")
-            projLiked.visibility = View.VISIBLE
-            projDisliked.visibility = View.INVISIBLE
+        val techniqueLiked =  view.findViewById<ImageButton>(R.id.btnLike)
+        val techniqueDisliked =  view.findViewById<ImageButton>(R.id.btnDislike)
+        if (Technique.techniques[position].isLiked) {
+            Log.d("changes", "technique liked")
+            techniqueLiked.visibility = View.VISIBLE
+            techniqueDisliked.visibility = View.INVISIBLE
         }
         else {
-            Log.d("changes", "Project unliked")
-            projLiked.visibility = View.INVISIBLE
-            projDisliked.visibility = View.VISIBLE
+            Log.d("changes", "technique unliked")
+            techniqueLiked.visibility = View.INVISIBLE
+            techniqueDisliked.visibility = View.VISIBLE
         }
     }
 }

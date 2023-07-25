@@ -8,18 +8,19 @@
     tools:context=".AddFragment">
 
     <EditText
-        android:id="@+id/projTitleAdd"
+        android:id="@+id/techniqueTitleAdd"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="16dp"
         android:layout_marginTop="16dp"
-        android:hint="@string/project_title"
         android:textSize="16pt"
-        app:layout_constraintEnd_toStartOf="@+id/imageView"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <!-- upload image section -->
+
     <EditText
-        android:id="@+id/projDescAdd"
+        android:id="@+id/techniqueDescAdd"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="8pt"
@@ -27,65 +28,53 @@
         android:layout_marginBottom="8dp"
         android:text="Description"
         app:layout_constraintBottom_toTopOf="@+id/submitAdd"
-        app:layout_constraintStart_toStartOf="@+id/projTitleAdd"
-        app:layout_constraintTop_toBottomOf="@+id/imageView"
+        app:layout_constraintStart_toStartOf="@+id/techniqueTitleAdd"
+        app:layout_constraintTop_toBottomOf="@+id/techniqueTitleAdd"
         app:layout_constraintVertical_bias="0.1"/>
 
     <EditText
-        android:id="@+id/projCreatedDateAdd"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:layout_marginBottom="8dp"
-        android:textSize="8pt"
-        android:ems="10"
-        android:text="Created on: "
-        app:layout_constraintHorizontal_bias="0.497"
-        app:layout_constraintStart_toStartOf="@+id/projTitleAdd"
-        app:layout_constraintTop_toBottomOf="@+id/projDescAdd" />
-
-    <EditText
-        android:id="@+id/projAuthorsAdd"
+        android:id="@+id/techniqueAuthorsAdd"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:layout_marginBottom="8dp"
         android:textSize="8pt"
         android:text="Authors: "
-        app:layout_constraintStart_toStartOf="@+id/projTitleAdd"
-        app:layout_constraintTop_toBottomOf="@+id/projCreatedDateAdd" />
+        app:layout_constraintStart_toStartOf="@+id/techniqueTitleAdd"
+        app:layout_constraintTop_toBottomOf="@+id/techniqueDescAdd" />
 
     <EditText
-        android:id="@+id/projUrlsAdd"
+        android:id="@+id/techniqueIngredientslistAdd"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:layout_marginBottom="8dp"
         android:textSize="8pt"
-        android:text="URLs: "
-        app:layout_constraintStart_toStartOf="@+id/projTitleAdd"
-        app:layout_constraintTop_toBottomOf="@+id/projAuthorsAdd"/>
+        android:text="Ingredients: "
+        app:layout_constraintStart_toStartOf="@+id/techniqueTitleAdd"
+        app:layout_constraintTop_toBottomOf="@+id/techniqueAuthorsAdd" />
 
     <EditText
-        android:id="@+id/projKeywordsAdd"
+        android:id="@+id/techniqueStepslistAdd"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:layout_marginBottom="8dp"
         android:textSize="8pt"
-        android:text="Keywords: "
-        app:layout_constraintStart_toStartOf="@+id/projTitleAdd"
-        app:layout_constraintTop_toBottomOf="@+id/projUrlsAdd" />
+        android:text="Steps: "
+        app:layout_constraintStart_toStartOf="@+id/techniqueTitleAdd"
+        app:layout_constraintTop_toBottomOf="@+id/techniqueIngredientslistAdd" />
 
-    <ImageView
-        android:id="@+id/imageView"
+    <EditText
+        android:id="@+id/techniqueTagslistAdd"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toBottomOf="@+id/projTitleAdd"
-        android:src="@mipmap/ic_launcher"
-        tools:src="@tools:sample/avatars" />
+        android:layout_marginBottom="8dp"
+        android:textSize="8pt"
+        android:text="Tags: "
+        app:layout_constraintStart_toStartOf="@+id/techniqueTitleAdd"
+        app:layout_constraintTop_toBottomOf="@+id/techniqueStepslistAdd" />
 
     <Button
         android:id="@+id/submitAdd"

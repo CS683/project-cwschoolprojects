@@ -17,12 +17,13 @@ import java.util.Locale
 class AddFragment : Fragment() {
 
     // Initializing variables
-    private lateinit var projTitleAdd: EditText
-    private lateinit var projDescAdd: EditText
-    private lateinit var projAuthorsAdd: EditText
-    private lateinit var projUrlsAdd: EditText
-    private lateinit var projKeywordsAdd: EditText
-    private lateinit var projDateCreatedAdd: EditText
+    private lateinit var techniqueTitleAdd: EditText
+    private lateinit var techniqueDescAdd: EditText
+    private lateinit var techniqueAuthorsAdd: EditText
+    private lateinit var techniqueIngredientsAdd: EditText
+//    private lateinit var thumbnail: EditText
+    private lateinit var techniqueStepsAdd: EditText
+    private lateinit var techniqueTagsAdd: EditText
     private lateinit var submitAdd:Button
     private lateinit var cancelAdd:Button
 
@@ -44,49 +45,50 @@ class AddFragment : Fragment() {
         super.onViewCreated(view,savedInstanceState)
 
         Log.d("debug", "Gathering all Edit UI components")
-        projTitleAdd = view.findViewById(R.id.projTitleAdd)
-        projDescAdd =  view.findViewById(R.id.projDescAdd)
-        projAuthorsAdd =  view.findViewById(R.id.projAuthorsAdd)
-        projUrlsAdd =  view.findViewById(R.id.projUrlsAdd)
-        projKeywordsAdd =  view.findViewById(R.id.projKeywordsAdd)
-        projDateCreatedAdd =  view.findViewById(R.id.projCreatedDateAdd)
+        techniqueTitleAdd = view.findViewById(R.id.techniqueTitleAdd)
+        techniqueDescAdd =  view.findViewById(R.id.techniqueDescAdd)
+        techniqueAuthorsAdd =  view.findViewById(R.id.techniqueAuthorsAdd)
+        techniqueIngredientsAdd =  view.findViewById(R.id.techniqueIngredientslistAdd)
+        techniqueStepsAdd =  view.findViewById(R.id.techniqueStepslistAdd)
+        techniqueTagsAdd =  view.findViewById(R.id.techniqueTagslistAdd)
         submitAdd = view.findViewById(R.id.submitAdd)
         cancelAdd = view.findViewById(R.id.cancelAdd)
 
         Log.d("debug", "Setting listeners")
         submitAdd.setOnClickListener {
 
-            Log.d("debug", "Getting new project values.")
-            var newTitle = projTitleAdd.text.toString()
-            var newDescription = projDescAdd.text.toString()
-            var newAuthors = projAuthorsAdd.text.toString()
-            var newUrls = projUrlsAdd.text.toString()
-            var newKeywords = projKeywordsAdd.text.toString()
-            var newDateCreated = SimpleDateFormat("dd/MM/yyyy", Locale.getDefault()).format(Date())
+            Log.d("debug", "Getting new technique values.")
+            var newTitle = techniqueTitleAdd.text.toString()
+            var newDescription = techniqueDescAdd.text.toString()
+            var newAuthors = techniqueAuthorsAdd.text.toString()
+            var newIngredients = mutableListOf(techniqueIngredientsAdd.text.toString())
+            var newSteps = mutableListOf(techniqueStepsAdd.text.toString())
+            var newTags = mutableListOf(techniqueTagsAdd.text.toString())
 
-            Log.d("debug", "Creating project object")
-            val newProject = Project(
-                Project.projects.size,
+            Log.d("debug", "Creating technique object")
+            val newTechnique = Technique(
+                Technique.techniques.size,
                 newTitle,
                 newDescription,
                 newAuthors,
-                newUrls,
+                newIngredients,
+                newSteps,
+                "",
                 false,
-                newKeywords,
-                newDateCreated
+                newTags
             )
 
-            Log.d("debug", "Adding project to mutable list")
-            Project.projects += listOf(newProject)
+            Log.d("debug", "Adding technique to mutable list")
+            Technique.techniques += listOf(newTechnique)
 
-            val action = AddFragmentDirections.actionAddFragmentToProjListRecycleViewFragment()
+            val action = AddFragmentDirections.actionAddFragmentToTechniqueListRecycleViewFragment()
             it.findNavController().navigate(action)
             Log.d("navigation", "Navigating back to home page.")
         }
 
         cancelAdd.setOnClickListener {
             Log.d("debug", "User cancelled add page.")
-            val action = AddFragmentDirections.actionAddFragmentToProjListRecycleViewFragment()
+            val action = AddFragmentDirections.actionAddFragmentToTechniqueListRecycleViewFragment()
             it.findNavController().navigate(action)
             Log.d("navigation", "Navigating back to home page.")
         }

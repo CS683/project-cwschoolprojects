@@ -5,36 +5,36 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".ProjListFragment">
+    tools:context=".TechniqueListFragment">
 
     <TextView
         android:id="@+id/title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:text="CS683 Projects"
+        android:text="Techniques"
         android:textSize="16pt"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/projlist"
+        android:id="@+id/techniquelist"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:layout_marginLeft="16dp"
         android:layout_marginRight="16dp"
         app:layoutManager="LinearLayoutManager"
-        tools:context=".ProjListRecycleViewFragment"
-        tools:listitem="@layout/fragment_proj_item"
+        tools:context=".TechniqueListRecycleViewFragment"
+        tools:listitem="@layout/fragment_technique_item"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/title" />
     />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/addProject"
+        android:id="@+id/addTechnique"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="4dp"

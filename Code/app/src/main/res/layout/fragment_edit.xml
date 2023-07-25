@@ -7,104 +7,102 @@
     android:layout_height="match_parent"
     tools:context=".EditFragment">
 
-    <EditText
-        android:id="@+id/projTitleEdit"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:hint="@string/project_title"
-        android:textSize="16pt"
-        app:layout_constraintEnd_toStartOf="@+id/imageView"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+<!--    <EditText-->
+<!--        android:id="@+id/projTitleEdit"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginTop="16dp"-->
+<!--        android:textSize="16pt"-->
+<!--        app:layout_constraintEnd_toStartOf="@+id/imageView"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toTopOf="parent" />-->
 
-    <EditText
-        android:id="@+id/projDescEdit"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="8pt"
-        android:layout_marginTop="8dp"
-        android:layout_marginBottom="8dp"
-        android:text="Description"
-        app:layout_constraintBottom_toTopOf="@+id/submit"
-        app:layout_constraintStart_toStartOf="@+id/projTitleEdit"
-        app:layout_constraintTop_toBottomOf="@+id/imageView"
-        app:layout_constraintVertical_bias="0.1"/>
+<!--    <EditText-->
+<!--        android:id="@+id/projDescEdit"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:textSize="8pt"-->
+<!--        android:layout_marginTop="8dp"-->
+<!--        android:layout_marginBottom="8dp"-->
+<!--        android:text="Description"-->
+<!--        app:layout_constraintBottom_toTopOf="@+id/submit"-->
+<!--        app:layout_constraintStart_toStartOf="@+id/projTitleEdit"-->
+<!--        app:layout_constraintTop_toBottomOf="@+id/imageView"-->
+<!--        app:layout_constraintVertical_bias="0.1"/>-->
 
-    <EditText
-        android:id="@+id/projCreatedDateEdit"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:layout_marginBottom="8dp"
-        android:textSize="8pt"
-        android:ems="10"
-        android:text="Created on: "
-        app:layout_constraintHorizontal_bias="0.497"
-        app:layout_constraintStart_toStartOf="@+id/projTitleEdit"
-        app:layout_constraintTop_toBottomOf="@+id/projDescEdit" />
+<!--    <EditText-->
+<!--        android:id="@+id/projCreatedDateEdit"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginTop="8dp"-->
+<!--        android:layout_marginBottom="8dp"-->
+<!--        android:textSize="8pt"-->
+<!--        android:ems="10"-->
+<!--        android:text="Created on: "-->
+<!--        app:layout_constraintHorizontal_bias="0.497"-->
+<!--        app:layout_constraintStart_toStartOf="@+id/projTitleEdit"-->
+<!--        app:layout_constraintTop_toBottomOf="@+id/projDescEdit" />-->
 
-    <EditText
-        android:id="@+id/projAuthorsEdit"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:layout_marginBottom="8dp"
-        android:textSize="8pt"
-        android:text="Authors: "
-        app:layout_constraintStart_toStartOf="@+id/projTitleEdit"
-        app:layout_constraintTop_toBottomOf="@+id/projCreatedDateEdit" />
+<!--    <EditText-->
+<!--        android:id="@+id/projAuthorsEdit"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginTop="8dp"-->
+<!--        android:layout_marginBottom="8dp"-->
+<!--        android:textSize="8pt"-->
+<!--        android:text="Authors: "-->
+<!--        app:layout_constraintStart_toStartOf="@+id/projTitleEdit"-->
+<!--        app:layout_constraintTop_toBottomOf="@+id/projCreatedDateEdit" />-->
 
-    <EditText
-        android:id="@+id/projUrlsEdit"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:layout_marginBottom="8dp"
-        android:textSize="8pt"
-        android:text="URLs: "
-        app:layout_constraintStart_toStartOf="@+id/projTitleEdit"
-        app:layout_constraintTop_toBottomOf="@+id/projAuthorsEdit"/>
+<!--    <EditText-->
+<!--        android:id="@+id/projUrlsEdit"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginTop="8dp"-->
+<!--        android:layout_marginBottom="8dp"-->
+<!--        android:textSize="8pt"-->
+<!--        android:text="URLs: "-->
+<!--        app:layout_constraintStart_toStartOf="@+id/projTitleEdit"-->
+<!--        app:layout_constraintTop_toBottomOf="@+id/projAuthorsEdit"/>-->
 
-    <EditText
-        android:id="@+id/projKeywordsEdit"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:layout_marginBottom="8dp"
-        android:textSize="8pt"
-        android:text="Keywords: "
-        app:layout_constraintStart_toStartOf="@+id/projTitleEdit"
-        app:layout_constraintTop_toBottomOf="@+id/projUrlsEdit" />
+<!--    <EditText-->
+<!--        android:id="@+id/projKeywordsEdit"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginTop="8dp"-->
+<!--        android:layout_marginBottom="8dp"-->
+<!--        android:textSize="8pt"-->
+<!--        android:text="Keywords: "-->
+<!--        app:layout_constraintStart_toStartOf="@+id/projTitleEdit"-->
+<!--        app:layout_constraintTop_toBottomOf="@+id/projUrlsEdit" />-->
 
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toBottomOf="@+id/projTitleEdit"
-        android:src="@mipmap/ic_launcher"
-        tools:src="@tools:sample/avatars" />
+<!--    <ImageView-->
+<!--        android:id="@+id/imageView"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginTop="8dp"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintBottom_toBottomOf="@+id/projTitleEdit"-->
+<!--        android:src="@mipmap/ic_launcher"-->
+<!--        tools:src="@tools:sample/avatars" />-->
 
-    <Button
-        android:id="@+id/submit"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="submit"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/cancel"
-        app:layout_constraintBottom_toBottomOf="parent" />
+<!--    <Button-->
+<!--        android:id="@+id/submit"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:text="submit"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintEnd_toStartOf="@+id/cancel"-->
+<!--        app:layout_constraintBottom_toBottomOf="parent" />-->
 
-    <Button
-        android:id="@+id/cancel"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="cancel"
-        app:layout_constraintStart_toEndOf="@+id/submit"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/submit"
-        app:layout_constraintBottom_toBottomOf="@+id/submit" />
-
+<!--    <Button-->
+<!--        android:id="@+id/cancel"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:text="cancel"-->
+<!--        app:layout_constraintStart_toEndOf="@+id/submit"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintTop_toTopOf="@+id/submit"-->
+<!--        app:layout_constraintBottom_toBottomOf="@+id/submit" />-->
 
 </androidx.constraintlayout.widget.ConstraintLayout>

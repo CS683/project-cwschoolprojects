@@ -9,14 +9,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.findNavController
-import com.google.android.material.floatingactionbutton.FloatingActionButton
-import bu.edu.littledropsoftechniques.databinding.FragmentProjListRecyclerViewBinding
+import bu.edu.littledropsoftechniques.databinding.FragmentTechniqueListRecyclerViewBinding
 
 /**
  * A fragment representing a list of Items.
  */
-class ProjListRecycleViewFragment : Fragment() {
-    private var _binding: FragmentProjListRecyclerViewBinding? = null
+class TechniqueListRecycleViewFragment : Fragment() {
+    private var _binding: FragmentTechniqueListRecyclerViewBinding? = null
     private val binding get() = _binding!!
 
     private var columnCount = 1
@@ -31,25 +30,25 @@ class ProjListRecycleViewFragment : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
-        _binding = FragmentProjListRecyclerViewBinding.inflate(inflater,
+        _binding = FragmentTechniqueListRecyclerViewBinding.inflate(inflater,
             container, false)
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding.projlist?.apply{
+        binding.techniquelist?.apply{
             layoutManager = when {
                 columnCount <= 1 -> LinearLayoutManager(context)
                 else -> GridLayoutManager(context, columnCount)
             }
-            adapter = MyProjListRecyclerViewAdapter(Project.projects)
+            adapter = TechniqueListRecyclerViewAdapter(Technique.techniques)
         }
 
-        binding.addProject.setOnClickListener {
-            val action = ProjListRecycleViewFragmentDirections.actionProjListRecycleViewFragmentToAddFragment()
+        binding.addTechnique.setOnClickListener {
+            val action = TechniqueListRecycleViewFragmentDirections.actionTechniqueListRecycleViewFragmentToAddFragment()
             it.findNavController().navigate(action)
-            Log.d("navigation", "Navigating to add project page.")
+            Log.d("navigation", "Navigating to add technique page.")
         }
     }
 
@@ -61,7 +60,7 @@ class ProjListRecycleViewFragment : Fragment() {
         // TODO: Customize parameter initialization
         @JvmStatic
         fun newInstance(columnCount: Int) =
-                ProjListRecycleViewFragment().apply {
+                TechniqueListRecycleViewFragment().apply {
                     arguments = Bundle().apply {
                         putInt(ARG_COLUMN_COUNT, columnCount)
                     }

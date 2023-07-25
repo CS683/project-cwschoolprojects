@@ -8,70 +8,82 @@
     tools:context=".DetailFragment">
 
     <TextView
-        android:id="@+id/projTitle"
+        android:id="@+id/techniqueTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:text="@string/project_title"
-        android:textSize="16pt"
-        app:layout_constraintEnd_toStartOf="@+id/imageView"
+        android:layout_marginTop="100dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="16dp"
+        android:textSize="12pt"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/projDesc"
+    <ImageView
+        android:id="@+id/mainThumbnail"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="6dp"
+        android:layout_marginTop="2dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="@+id/techniqueTitle"
+        android:src="@mipmap/ic_launcher"
+        tools:src="@tools:sample/avatars" /> <!-- figure out how to make it clearer-->
+
+    <TextView
+        android:id="@+id/techniqueDesc"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
         android:layout_marginBottom="8dp"
         android:textSize="8pt"
         android:text="Description"
-        app:layout_constraintBottom_toTopOf="@+id/editProj"
-        app:layout_constraintStart_toStartOf="@+id/projTitle"
-        app:layout_constraintTop_toBottomOf="@+id/imageView"
+        app:layout_constraintBottom_toTopOf="@+id/editTechnique"
+        app:layout_constraintStart_toStartOf="@+id/techniqueTitle"
+        app:layout_constraintTop_toBottomOf="@+id/mainThumbnail"
         app:layout_constraintVertical_bias="0.1"/>
 
     <TextView
-        android:id="@+id/projCreatedDate"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:clickable="false"
-        android:textSize="8pt"
-        android:layout_marginTop="8dp"
-        android:layout_marginBottom="8dp"
-        android:text="Created on: "
-        app:layout_constraintHorizontal_bias="0.497"
-        app:layout_constraintStart_toStartOf="@+id/projTitle"
-        app:layout_constraintTop_toBottomOf="@+id/projDesc" />
-
-    <TextView
-        android:id="@+id/projAuthors"
+        android:id="@+id/techniqueAuthors"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="8pt"
         android:layout_marginTop="8dp"
         android:layout_marginBottom="8dp"
         android:text="Authors: "
-        app:layout_constraintStart_toStartOf="@+id/projTitle"
-        app:layout_constraintTop_toBottomOf="@+id/projCreatedDate" />
+        app:layout_constraintStart_toStartOf="@+id/techniqueTitle"
+        app:layout_constraintTop_toBottomOf="@+id/techniqueDesc" />
 
-    <TextView
-        android:id="@+id/projUrls"
-        android:layout_width="wrap_content"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/techniqueIngredientslist"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textSize="8pt"
         android:layout_marginTop="8dp"
         android:layout_marginBottom="8dp"
-        android:text="URLs: "
-        app:layout_constraintStart_toStartOf="@+id/projTitle"
-        app:layout_constraintTop_toBottomOf="@+id/projAuthors"/>
+        app:layoutManager="LinearLayoutManager"
+        tools:context=".TechniqueListRecycleViewFragment"
+        tools:listitem="@layout/fragment_technique_item"
+        app:layout_constraintStart_toStartOf="@+id/techniqueTitle"
+        app:layout_constraintTop_toBottomOf="@+id/techniqueAuthors" />
+    />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/techniqueStepslist"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
+        app:layoutManager="LinearLayoutManager"
+        tools:context=".TechniqueListRecycleViewFragment"
+        tools:listitem="@layout/fragment_technique_item"
+        app:layout_constraintStart_toStartOf="@+id/techniqueTitle"
+        app:layout_constraintTop_toBottomOf="@+id/techniqueIngredientslist" />
+    />
 
     <ImageButton
         android:id="@+id/btnDislike"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toBottomOf="@+id/projDesc"
+        app:layout_constraintBottom_toBottomOf="@+id/techniqueDesc"
         android:src="@android:drawable/btn_star_big_off" />
 
     <ImageButton
@@ -79,37 +91,26 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toBottomOf="@+id/projDesc"
+        app:layout_constraintBottom_toBottomOf="@+id/techniqueDesc"
         android:src="@android:drawable/btn_star_big_on" />
 
     <TextView
-        android:id="@+id/projKeywords"
+        android:id="@+id/techniqueTagslist"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="8pt"
         android:layout_marginTop="8dp"
         android:layout_marginBottom="8dp"
         android:text="Keywords: "
-        app:layout_constraintStart_toStartOf="@+id/projTitle"
-        app:layout_constraintTop_toBottomOf="@+id/projUrls" />
-
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="2dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toBottomOf="@+id/projTitle"
-        android:src="@mipmap/ic_launcher"
-        tools:src="@tools:sample/avatars" />
+        app:layout_constraintStart_toStartOf="@+id/techniqueTitle"
+        app:layout_constraintTop_toBottomOf="@+id/techniqueStepslist" />
 
     <ImageButton
-        android:id="@+id/editProj"
+        android:id="@+id/editTechnique"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@android:drawable/ic_menu_edit"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toBottomOf="parent" />
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>

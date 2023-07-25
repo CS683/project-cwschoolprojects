@@ -3,21 +3,21 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@+id/projListRecycleViewFragment">
+    app:startDestination="@+id/techniqueListRecycleViewFragment">
 
     <fragment
-        android:id="@+id/projListRecycleViewFragment"
-        android:name="bu.edu.littledropsoftechniques.ProjListRecycleViewFragment"
-        android:label="ProjListRecycleViewFragment">
+        android:id="@+id/techniqueListRecycleViewFragment"
+        android:name="bu.edu.littledropsoftechniques.TechniqueListRecycleViewFragment"
+        android:label="TechniqueListRecycleViewFragment">
         <action
-            android:id="@+id/action_projListRecycleViewFragment_to_detailFragment"
+            android:id="@+id/action_techniqueListRecycleViewFragment_to_detailFragment"
             app:destination="@id/detailFragment">
             <argument
                 android:name="position"
                 app:argType="integer" />
         </action>
         <action
-            android:id="@+id/action_projListRecycleViewFragment_to_addFragment"
+            android:id="@+id/action_techniqueListRecycleViewFragment_to_addFragment"
             app:destination="@id/addFragment"/>
     </fragment>
     <fragment
@@ -29,38 +29,38 @@
             android:name="position"
             app:argType="integer"
             android:defaultValue="0"/>
-        <action
-            android:id="@+id/action_detailFragment_to_editFragment"
-            app:destination="@id/editFragment">
-            <argument
-                android:name="position"
-                app:argType="integer" />
-        </action>
+<!--        <action-->
+<!--            android:id="@+id/action_detailFragment_to_editFragment"-->
+<!--            app:destination="@id/editFragment">-->
+<!--            <argument-->
+<!--                android:name="position"-->
+<!--                app:argType="integer" />-->
+<!--        </action>-->
     </fragment>
-    <fragment
-        android:id="@+id/editFragment"
-        android:name="bu.edu.littledropsoftechniques.EditFragment"
-        android:label="fragment_edit"
-        tools:layout="@layout/fragment_edit">
-        <argument
-            android:name="position"
-            app:argType="integer"
-            android:defaultValue="0"/>
-        <action
-            android:id="@+id/action_editFragment_pop"
-            app:destination="@id/detailFragment">
-            <argument
-                android:name="position"
-                app:argType="integer" />
-        </action>
-    </fragment>
+<!--    <fragment-->
+<!--        android:id="@+id/editFragment"-->
+<!--        android:name="bu.edu.littledropsoftechniques.EditFragment"-->
+<!--        android:label="fragment_edit"-->
+<!--        tools:layout="@layout/fragment_edit">-->
+<!--        <argument-->
+<!--            android:name="position"-->
+<!--            app:argType="integer"-->
+<!--            android:defaultValue="0"/>-->
+<!--        <action-->
+<!--            android:id="@+id/action_editFragment_pop"-->
+<!--            app:destination="@id/detailFragment">-->
+<!--            <argument-->
+<!--                android:name="position"-->
+<!--                app:argType="integer" />-->
+<!--        </action>-->
+<!--    </fragment>-->
     <fragment
         android:id="@+id/addFragment"
         android:name="bu.edu.littledropsoftechniques.AddFragment"
         android:label="fragment_add"
         tools:layout="@layout/fragment_add">
         <action
-            android:id="@+id/action_addFragment_to_projListRecycleViewFragment"
-            app:destination="@id/projListRecycleViewFragment"/>
+            android:id="@+id/action_addFragment_to_techniqueListRecycleViewFragment"
+            app:destination="@id/techniqueListRecycleViewFragment"/>
     </fragment>
 </navigation>
