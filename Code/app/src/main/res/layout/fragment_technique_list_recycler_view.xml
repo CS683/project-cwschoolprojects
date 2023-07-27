@@ -18,6 +18,20 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <SearchView
+        android:id="@+id/searchTechniques"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:iconifiedByDefault="false"
+        android:icon="@android:drawable/ic_menu_search"
+        android:queryHint="Search techniques..."
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/title" />
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/techniquelist"
         android:layout_width="match_parent"
@@ -30,7 +44,7 @@
         tools:listitem="@layout/fragment_technique_item"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/title" />
+        app:layout_constraintTop_toBottomOf="@+id/searchTechniques" />
     />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
