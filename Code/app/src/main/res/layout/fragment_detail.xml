@@ -5,7 +5,7 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".DetailFragment">
+    tools:context=".fragments.DetailFragment">
 
     <TextView
         android:id="@+id/techniqueTitle"
@@ -52,28 +52,24 @@
         app:layout_constraintStart_toStartOf="@+id/techniqueTitle"
         app:layout_constraintTop_toBottomOf="@+id/techniqueDesc" />
 
-    <androidx.recyclerview.widget.RecyclerView
+    <TextView
         android:id="@+id/techniqueIngredientslist"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:textSize="8pt"
         android:layout_marginTop="8dp"
         android:layout_marginBottom="8dp"
-        app:layoutManager="LinearLayoutManager"
-        tools:context=".TechniqueListRecycleViewFragment"
-        tools:listitem="@layout/fragment_technique_item"
         app:layout_constraintStart_toStartOf="@+id/techniqueTitle"
         app:layout_constraintTop_toBottomOf="@+id/techniqueAuthors" />
     />
 
-    <androidx.recyclerview.widget.RecyclerView
+    <TextView
         android:id="@+id/techniqueStepslist"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:textSize="8pt"
         android:layout_marginTop="8dp"
         android:layout_marginBottom="8dp"
-        app:layoutManager="LinearLayoutManager"
-        tools:context=".TechniqueListRecycleViewFragment"
-        tools:listitem="@layout/fragment_technique_item"
         app:layout_constraintStart_toStartOf="@+id/techniqueTitle"
         app:layout_constraintTop_toBottomOf="@+id/techniqueIngredientslist" />
     />

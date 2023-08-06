@@ -1,4 +1,4 @@
-//package bu.edu.littledropsoftechniques
+package bu.edu.littledropsoftechniques.fragments//package bu.edu.littledropsoftechniques
 //import android.os.Bundle
 //import android.util.Log
 //import androidx.fragment.app.Fragment

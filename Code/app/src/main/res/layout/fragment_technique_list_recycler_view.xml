@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".TechniqueListFragment">
+    tools:context=".fragments.TechniqueListRecycleViewFragment">
 
     <TextView
         android:id="@+id/title"
@@ -40,7 +40,7 @@
         android:layout_marginLeft="16dp"
         android:layout_marginRight="16dp"
         app:layoutManager="LinearLayoutManager"
-        tools:context=".TechniqueListRecycleViewFragment"
+        tools:context=".fragments.TechniqueListRecycleViewFragment"
         tools:listitem="@layout/fragment_technique_item"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

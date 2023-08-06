@@ -7,14 +7,14 @@
 
     <fragment
         android:id="@+id/techniqueListRecycleViewFragment"
-        android:name="bu.edu.littledropsoftechniques.TechniqueListRecycleViewFragment"
+        android:name="bu.edu.littledropsoftechniques.fragments.TechniqueListRecycleViewFragment"
         android:label="TechniqueListRecycleViewFragment">
         <action
             android:id="@+id/action_techniqueListRecycleViewFragment_to_detailFragment"
             app:destination="@id/detailFragment">
-            <argument
-                android:name="position"
-                app:argType="integer" />
+<!--            <argument-->
+<!--                android:name="position"-->
+<!--                app:argType="integer" />-->
         </action>
         <action
             android:id="@+id/action_techniqueListRecycleViewFragment_to_addFragment"
@@ -22,19 +22,19 @@
     </fragment>
     <fragment
         android:id="@+id/detailFragment"
-        android:name="bu.edu.littledropsoftechniques.DetailFragment"
+        android:name="bu.edu.littledropsoftechniques.fragments.DetailFragment"
         android:label="fragment_detail"
         tools:layout="@layout/fragment_detail">
-        <argument
-            android:name="position"
-            app:argType="integer"
-            android:defaultValue="0"/>
+<!--        <argument-->
+<!--            android:name="position"-->
+<!--            app:argType="integer"-->
+<!--            android:defaultValue="0"/>-->
 <!--        <action-->
 <!--            android:id="@+id/action_detailFragment_to_editFragment"-->
 <!--            app:destination="@id/editFragment">-->
-<!--            <argument-->
-<!--                android:name="position"-->
-<!--                app:argType="integer" />-->
+<!--&lt;!&ndash;            <argument&ndash;&gt;-->
+<!--&lt;!&ndash;                android:name="position"&ndash;&gt;-->
+<!--&lt;!&ndash;                app:argType="integer" />&ndash;&gt;-->
 <!--        </action>-->
     </fragment>
 <!--    <fragment-->
@@ -56,7 +56,7 @@
 <!--    </fragment>-->
     <fragment
         android:id="@+id/addFragment"
-        android:name="bu.edu.littledropsoftechniques.AddFragment"
+        android:name="bu.edu.littledropsoftechniques.fragments.AddFragment"
         android:label="fragment_add"
         tools:layout="@layout/fragment_add">
         <action

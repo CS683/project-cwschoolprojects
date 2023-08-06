@@ -1,6 +1,5 @@
-package bu.edu.littledropsoftechniques
+package bu.edu.littledropsoftechniques.adapters
 
-import android.util.Log
 import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -9,10 +8,23 @@ import android.widget.TextView
 import androidx.cardview.widget.CardView
 import androidx.navigation.findNavController
 import bu.edu.littledropsoftechniques.databinding.FragmentTechniqueItemBinding
+import bu.edu.littledropsoftechniques.datalayer.Technique.Technique
+import bu.edu.littledropsoftechniques.fragments.TechniqueListRecycleViewFragmentDirections
 
 class TechniqueListRecyclerViewAdapter(
-    private var techniques: List<Technique>)
-    : RecyclerView.Adapter<TechniqueListRecyclerViewAdapter.ViewHolder>() {
+        private val onTechniqueClickListener: OnTechniqueClickListener
+    ): RecyclerView.Adapter<TechniqueListRecyclerViewAdapter.ViewHolder>() {
+
+    private val techniques = mutableListOf<Technique>()
+    fun replaceItems(myProjects: List<Technique>) {
+        techniques.clear()
+        techniques.addAll(myProjects)
+        notifyDataSetChanged()
+    }
+
+    interface OnTechniqueClickListener {
+        fun onTechniqueClick(technique: Technique);
+    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         return ViewHolder(FragmentTechniqueItemBinding.inflate(LayoutInflater.from(parent.context), parent, false))
@@ -23,7 +35,10 @@ class TechniqueListRecyclerViewAdapter(
 //        holder.idView.text = (technique.id +1).toString()
         holder.contentView.text = technique.title.toString().uppercase()
         holder.cardView.setOnClickListener{
-            val action = TechniqueListRecycleViewFragmentDirections.actionTechniqueListRecycleViewFragmentToDetailFragment(technique.id)
+            val action =
+                TechniqueListRecycleViewFragmentDirections.actionTechniqueListRecycleViewFragmentToDetailFragment(
+//                    technique.id
+                )
             it.findNavController().navigate(action)
         }
 //        holder.imageView.setImageIcon(technique.mainPhotoRef)
@@ -44,7 +59,8 @@ class TechniqueListRecyclerViewAdapter(
 
     }
     fun filterList(filteredTechniques: List<Technique>) {
-        techniques = filteredTechniques
+        techniques.clear()
+        techniques.addAll(filteredTechniques)
         notifyDataSetChanged()
     }
 }
