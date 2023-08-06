@@ -1,5 +1,6 @@
 package bu.edu.littledropsoftechniques.adapters
 
+import android.util.Log
 import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -16,9 +17,9 @@ class TechniqueListRecyclerViewAdapter(
     ): RecyclerView.Adapter<TechniqueListRecyclerViewAdapter.ViewHolder>() {
 
     private val techniques = mutableListOf<Technique>()
-    fun replaceItems(myProjects: List<Technique>) {
+    fun replaceItems(myTechniques: List<Technique>) {
         techniques.clear()
-        techniques.addAll(myProjects)
+        techniques.addAll(myTechniques)
         notifyDataSetChanged()
     }
 
@@ -35,6 +36,7 @@ class TechniqueListRecyclerViewAdapter(
 //        holder.idView.text = (technique.id +1).toString()
         holder.contentView.text = technique.title.toString().uppercase()
         holder.cardView.setOnClickListener{
+            onTechniqueClickListener.onTechniqueClick(technique)
             val action =
                 TechniqueListRecycleViewFragmentDirections.actionTechniqueListRecycleViewFragmentToDetailFragment(
 //                    technique.id
@@ -45,6 +47,13 @@ class TechniqueListRecyclerViewAdapter(
     }
 
     override fun getItemCount(): Int = techniques.size
+
+    fun getTechnique(pos: Int): Technique {
+        if (techniques.size > 0)
+            return techniques[pos]
+        else
+            return Technique(0,"","", listOf(""), listOf(""), listOf(""),"", false, listOf(""))
+    }
 
     inner class ViewHolder(binding: FragmentTechniqueItemBinding)
         : RecyclerView.ViewHolder(binding.root) {

@@ -9,7 +9,7 @@ import androidx.room.TypeConverters
     version = 1
 )
 
-@TypeConverters(TechniquesArrayTypeConverter::class)
+@TypeConverters(TechniquesTypeConverter::class)
 abstract class LittleDropsOfTechniquesDatabase: RoomDatabase() {
     abstract fun techniqueDao(): TechniqueDao
 }

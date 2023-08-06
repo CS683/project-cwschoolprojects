@@ -33,12 +33,12 @@ class CurTechniqueViewModel(application: Application): AndroidViewModel(applicat
     fun updateCurTechnique(
         title: String,
         description: String,
-        authors: Array<String>,
-        ingredients: Array<String>,
-        steps: Array<String>,
+        authors: List<String>,
+        ingredients: List<String>,
+        steps: List<String>,
         mainPhotoRef: String,
         isLiked: Boolean,
-        tags: Array<String>
+        tags: List<String>
     ) {
         _curTechnique.value = _curTechnique.value?.apply {
             this.title = title

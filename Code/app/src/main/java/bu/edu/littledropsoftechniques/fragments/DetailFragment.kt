@@ -77,12 +77,12 @@ class DetailFragment : Fragment() {
         viewModel.updateCurTechnique(
             viewModel.curTechnique.value?.title?:"",
             viewModel.curTechnique.value?.description?:"",
-            viewModel.curTechnique.value?.authors?:arrayOf(),
-            viewModel.curTechnique.value?.ingredients?:arrayOf(),
-            viewModel.curTechnique.value?.steps?:arrayOf(),
+            viewModel.curTechnique.value?.authors?:listOf(),
+            viewModel.curTechnique.value?.ingredients?:listOf(),
+            viewModel.curTechnique.value?.steps?:listOf(),
             viewModel.curTechnique.value?.mainPhotoRef?:"",
             !currentLikedStatus,
-            viewModel.curTechnique.value?.tags?:arrayOf()
+            viewModel.curTechnique.value?.tags?:listOf()
         )
         changeLikedImage(view)
     }

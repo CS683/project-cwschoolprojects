@@ -1,6 +1,7 @@
 package bu.edu.littledropsoftechniques.viewmodels
 
 import android.app.Application
+import android.util.Log
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import kotlinx.coroutines.Dispatchers
@@ -18,12 +19,13 @@ class TechniqueListViewModel(application: Application): AndroidViewModel(applica
     val techniqueList:LiveData<List<Technique>>
         get() = _techniqueList
 
-    fun setInitialProjects() {
-        val allProjects = viewModelScope.async(Dispatchers.IO) {
+    fun setInitialTechniques() {
+
+        val allTechniques = viewModelScope.async(Dispatchers.IO) {
             littleDropsOfTechniquesRepository.getAllTechniques()
         }
         viewModelScope.launch(Dispatchers.IO) {
-            _techniqueList = allProjects.await()
+            _techniqueList = allTechniques.await()
         }
     }
 

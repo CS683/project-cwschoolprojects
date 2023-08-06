@@ -41,38 +41,38 @@ class LittleDropsOfTechniquesApplication: Application() {
                     0,
                     "First Technique",
                     "This is a test",
-                    arrayOf("Cherylee Wells"),
-                    arrayOf("Test"),
-                    arrayOf("Test"),
+                    listOf("Cherylee Wells"),
+                    listOf("Test"),
+                    listOf("Test"),
                     "url",
                     false,
-                    arrayOf("Test")
+                    listOf("Test")
                 )
             )
             littleDropsOfTechniquesDatabase.techniqueDao().addTechnique(
                 Technique(
-                    1,
+                    0,
                     "Second Technique",
                     "This is a test",
-                    arrayOf("Cherylee Wells"),
-                    arrayOf("Test"),
-                    arrayOf("Test"),
+                    listOf("Cherylee Wells"),
+                    listOf("Test"),
+                    listOf("Test"),
                     "url",
                     false,
-                    arrayOf("Test")
+                    listOf("Test")
                 )
             )
             littleDropsOfTechniquesDatabase.techniqueDao().addTechnique(
                 Technique(
-                    2,
+                    0,
                     "Third Technique",
                     "This is a test",
-                    arrayOf("Cherylee Wells"),
-                    arrayOf("Test"),
-                    arrayOf("Test"),
+                    listOf("Cherylee Wells"),
+                    listOf("Test"),
+                    listOf("Test"),
                     "url",
                     false,
-                    arrayOf("Test")
+                    listOf("Test")
                 )
             )
         }

@@ -3,10 +3,8 @@ package bu.edu.littledropsoftechniques.datalayer.Technique
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import androidx.room.TypeConverter
+import bu.edu.littledropsoftechniques.datalayer.Ingredient.Ingredient
 import com.google.gson.Gson
-import com.google.gson.reflect.TypeToken
-import java.lang.reflect.Type
-
 
 @Entity(tableName = "techniques")
 data class Technique(
@@ -14,31 +12,19 @@ data class Technique(
     val id: Int,
     var title: String,
     var description: String,
-    var authors:  Array<String>,
-    var ingredients:  Array<String>,
-    var steps:  Array<String>,
+    var authors:  List<String>,
+    var ingredients:  List<String>,
+    var steps:  List<String>,
     var mainPhotoRef: String,
     var isLiked: Boolean,
-    var tags:  Array<String>
+    var tags:  List<String>
 )
 
-class TechniquesArrayTypeConverter {
-
-//    @TypeConverter
-//    fun listToJson(value: List<Technique>?) = Gson().toJson(value)
-//
-//    @TypeConverter
-//    fun jsonToList(value: String) = Gson().fromJson(value, Array<Technique>::class.java).toList()
+class TechniquesTypeConverter {
 
     @TypeConverter
-    fun fromString(value: String?): Array<String?>? {
-        val listType: Type = object : TypeToken<Array<String?>?>() {}.type
-        return Gson().fromJson(value, listType)
-    }
+    fun listToJson(value: List<String>?) = Gson().toJson(value)
 
     @TypeConverter
-    fun fromArrayList(list: Array<String?>?): String? {
-        val gson = Gson()
-        return gson.toJson(list)
-    }
+    fun jsonToList(value: String) = Gson().fromJson(value, Array<String>::class.java).toList()
 }

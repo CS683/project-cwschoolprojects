@@ -46,10 +46,10 @@ class AddFragment : Fragment() {
             Log.d("debug", "Getting new technique values.")
             var newTitle = binding.techniqueTitleAdd.text.toString()
             var newDescription = binding.techniqueDescAdd.text.toString()
-            var newAuthors = arrayOf(binding.techniqueAuthorsAdd.text.toString())
-            var newIngredients = arrayOf(binding.techniqueIngredientslistAdd.text.toString())
-            var newSteps = arrayOf(binding.techniqueStepslistAdd.text.toString())
-            var newTags = arrayOf(binding.techniqueTagslistAdd.text.toString())
+            var newAuthors = listOf(binding.techniqueAuthorsAdd.text.toString())
+            var newIngredients = listOf(binding.techniqueIngredientslistAdd.text.toString())
+            var newSteps = listOf(binding.techniqueStepslistAdd.text.toString())
+            var newTags = listOf(binding.techniqueTagslistAdd.text.toString())
 
             Log.d("debug", "Creating technique object")
             val newTechnique = Technique(

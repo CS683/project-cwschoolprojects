@@ -9,6 +9,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.SearchView
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
 import bu.edu.littledropsoftechniques.datalayer.Technique.Technique
@@ -32,6 +33,10 @@ class TechniqueListRecycleViewFragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+        listViewModel =
+            ViewModelProvider(this).get(TechniqueListViewModel::class.java)
+        listViewModel.setInitialTechniques()
+
         arguments?.let {
             columnCount = it.getInt(ARG_COLUMN_COUNT)
         }
@@ -46,18 +51,17 @@ class TechniqueListRecycleViewFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding.techniquelist?.apply{
+
+        viewModel =
+            ViewModelProvider(requireActivity()).get(CurTechniqueViewModel::class.java)
+        listViewModel =
+            ViewModelProvider(this).get(TechniqueListViewModel::class.java)
+
+        binding.techniquelist.apply{
             layoutManager = when {
                 columnCount <= 1 -> LinearLayoutManager(context)
                 else -> GridLayoutManager(context, columnCount)
             }
-//            adapter = TechniqueListRecyclerViewAdapter(Technique.techniques)
-
-            viewModel =
-                ViewModelProvider(requireActivity()).get(CurTechniqueViewModel::class.java)
-            listViewModel =
-                ViewModelProvider(requireActivity()).get(TechniqueListViewModel::class.java)
-//                ViewModelProvider(this).get(TechniqueListViewModel::class.java)
 
             val techniqueListAdapter = TechniqueListRecyclerViewAdapter(
                 object : TechniqueListRecyclerViewAdapter.OnTechniqueClickListener {
@@ -68,10 +72,14 @@ class TechniqueListRecycleViewFragment : Fragment() {
 
             this.adapter = techniqueListAdapter
 
-//            listViewModel.projectList.observe(viewLifecycleOwner, Observer {
-//                techniqueListAdapter.replaceItems(it)
-//                viewModel.initCurProject(techniqueListAdapter.getTechnique(0))
-//            })
+            listViewModel.techniqueList.observe(viewLifecycleOwner, Observer {
+                techniqueListAdapter.replaceItems(it)
+                viewModel.initCurTechnique(techniqueListAdapter.getTechnique(0))
+            })
+
+            viewModel.curTechnique.observe(viewLifecycleOwner, Observer {
+                techniqueListAdapter.notifyDataSetChanged()
+            })
         }
 
         binding.addTechnique.setOnClickListener {
@@ -88,7 +96,12 @@ class TechniqueListRecycleViewFragment : Fragment() {
             override fun onQueryTextChange(msg: String): Boolean {
                 // inside on query text change method we are
                 // calling a method to filter our recycler view.
-                filter(msg)
+                if (msg != null) {
+                    val trimmedMsg = msg.trim()
+                    if (trimmedMsg != "") {
+                        filter(msg)
+                    }
+                }
                 return true
             }
         })
@@ -121,14 +134,14 @@ class TechniqueListRecycleViewFragment : Fragment() {
 
         // TODO: Customize parameter argument names
         const val ARG_COLUMN_COUNT = "column-count"
-//
-//        // TODO: Customize parameter initialization
-//        @JvmStatic
-//        fun newInstance(columnCount: Int) =
-//                TechniqueListRecycleViewFragment().apply {
-//                    arguments = Bundle().apply {
-//                        putInt(ARG_COLUMN_COUNT, columnCount)
-//                    }
-//                }
+
+        // TODO: Customize parameter initialization
+        @JvmStatic
+        fun newInstance(columnCount: Int) =
+                TechniqueListRecycleViewFragment().apply {
+                    arguments = Bundle().apply {
+                        putInt(ARG_COLUMN_COUNT, columnCount)
+                    }
+                }
     }
 }
