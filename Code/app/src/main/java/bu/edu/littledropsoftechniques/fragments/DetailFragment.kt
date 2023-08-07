@@ -53,12 +53,12 @@ class DetailFragment : Fragment() {
         viewModel.curTechnique.observe(viewLifecycleOwner, Observer {
             binding.techniqueTitle.text =  it?.title?:""
             binding.techniqueDesc.text = it?.description?:""
-            binding.techniqueAuthors.text = (it?.authors?:"").toString()
-            binding.techniqueIngredientslist.text = (it?.ingredients?:"").toString()
-            binding.techniqueStepslist.text = (it?.steps?:"").toString()
+            binding.techniqueAuthors.text = it?.authors?.joinToString(",")
+            binding.techniqueIngredientslist.text = it?.ingredients?.joinToString(",")
+            binding.techniqueStepslist.text = it?.steps?.joinToString(",")
 //            binding.mainThumbnail.setImageResource(it?.mainPhotoRef?:"")
             changeLikedImage(view)
-            binding.techniqueTagslist.text = (it?.tags?:"").toString()
+            binding.techniqueTagslist.text = it?.tags?.joinToString(",")
         })
 
 //        Log.d("debug", "Setting listeners")

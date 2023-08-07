@@ -39,40 +39,49 @@ class LittleDropsOfTechniquesApplication: Application() {
             littleDropsOfTechniquesDatabase.techniqueDao().addTechnique(
                 Technique(
                     0,
-                    "First Technique",
-                    "This is a test",
-                    listOf("Cherylee Wells"),
-                    listOf("Test"),
-                    listOf("Test"),
-                    "url",
+                    "Royal Icing",
+                    "What is royal icing and what is is good for?",
+                    listOf("System Admin"),
+                    listOf(" 1/2 cup water",
+                        "2 lbs powdered sugar",
+                        "1 tsp cream of tartar"),
+                    listOf("Mix all ingredients together in a mixer."),
+                    "https://www.sweetsugarbelle.com/blog/wp-content/uploads/2011/06/Finished+product.jpg",
                     false,
-                    listOf("Test")
+                    listOf("royal icing", "icing")
                 )
             )
             littleDropsOfTechniquesDatabase.techniqueDao().addTechnique(
                 Technique(
                     0,
-                    "Second Technique",
-                    "This is a test",
-                    listOf("Cherylee Wells"),
-                    listOf("Test"),
-                    listOf("Test"),
-                    "url",
+                    "Piping Royal Icing",
+                    "How to pip royal icing.",
+                    listOf("System Admin"),
+                    listOf(" 1/2 cup water",
+                        "2 lbs powdered sugar",
+                        "1 tsp cream of tartar"),
+                    listOf("Mix all ingredients together in a mixer."),
+                    "https://www.thefrostedkitchen.com/wp-content/uploads/2021/02/Flood-Consistency.png",
                     false,
-                    listOf("Test")
+                    listOf("royal icing", "icing")
                 )
             )
             littleDropsOfTechniquesDatabase.techniqueDao().addTechnique(
                 Technique(
                     0,
-                    "Third Technique",
-                    "This is a test",
-                    listOf("Cherylee Wells"),
-                    listOf("Test"),
-                    listOf("Test"),
-                    "url",
+                    "Fondant",
+                    "What is fondant and what is is good for?",
+                    listOf("System Admin"),
+                    listOf("16 ounces mini marshmallows",
+                            "32 ounces powdered sugar",
+                            "4 tablespoons water",
+                            "1 teaspoon shortening"),
+                    listOf("Put marshmallows, water, and shortening in a glass microwavable bowl.",
+                        "Microwave for 20 seconds, then stir. Repeat 4 times.",
+                        "Pour into a mixer and mix well using the dough attachment. Add in powdered sugar a cup at a time. Mix until the shine is completely gone. You may not need to use all the sugar, just keep adding until it has the consistency of play dough. The final result should not be sticky to the touch."),
+                    "https://www.biggerbolderbaking.com/wp-content/uploads/2016/04/IMG_1868.jpg",
                     false,
-                    listOf("Test")
+                    listOf("icing")
                 )
             )
         }

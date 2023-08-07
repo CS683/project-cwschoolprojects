@@ -96,12 +96,10 @@ class TechniqueListRecycleViewFragment : Fragment() {
             override fun onQueryTextChange(msg: String): Boolean {
                 // inside on query text change method we are
                 // calling a method to filter our recycler view.
-                if (msg != null) {
-                    val trimmedMsg = msg.trim()
-                    if (trimmedMsg != "") {
-                        filter(msg)
-                    }
-                }
+
+                val trimmedMsg = msg.trim()
+                filter(trimmedMsg)
+
                 return true
             }
         })
@@ -115,10 +113,10 @@ class TechniqueListRecycleViewFragment : Fragment() {
         if (currentTechniques != null) {
             // running a for loop to compare elements.
             for (item in currentTechniques) {
-                // checking if the entered string matched with any item of our recycler view.
-                if (item.title.lowercase().contains(text.lowercase())) {
-                    // if the item is matched we are
-                    // adding it to our filtered list.
+                Log.d("debug", item.tags.toString())
+                if (text.toString() == "" ||
+                    item.title.lowercase().contains(text.lowercase()) ||
+                    item.tags.toString().lowercase().contains(text.lowercase())) {
                     filteredTechniques += listOf(item)
                 }
             }

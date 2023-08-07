@@ -10,7 +10,7 @@ android {
     compileSdk 34
 
     defaultConfig {
-        applicationId "bu.edu.littledropsoftechniques"
+        applicationId 'bu.edu.littledropsoftechniques'
         minSdk 24
         targetSdk 34
         versionCode 1
