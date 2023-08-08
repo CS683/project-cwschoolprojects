@@ -51,7 +51,7 @@ class DetailFragment : Fragment() {
 
         Log.d("debug", "Setting values of project")
         viewModel.curTechnique.observe(viewLifecycleOwner, Observer {
-            binding.techniqueTitle.text =  it?.title?:""
+            binding.techniqueTitle.text =  it?.title?:"".uppercase()
             binding.techniqueDesc.text = it?.description?:""
             binding.techniqueAuthors.text = it?.authors?.joinToString(",")
             binding.techniqueIngredientslist.text = it?.ingredients?.joinToString(",")
@@ -75,7 +75,7 @@ class DetailFragment : Fragment() {
         var currentLikedStatus = viewModel.curTechnique.value?.isLiked?:true
 
         viewModel.updateCurTechnique(
-            viewModel.curTechnique.value?.title?:"",
+            viewModel.curTechnique.value?.title?:"".uppercase(),
             viewModel.curTechnique.value?.description?:"",
             viewModel.curTechnique.value?.authors?:listOf(),
             viewModel.curTechnique.value?.ingredients?:listOf(),

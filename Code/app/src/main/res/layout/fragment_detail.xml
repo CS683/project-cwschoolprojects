@@ -3,30 +3,55 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
+    android:padding="25dp"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".fragments.DetailFragment">
 
-    <TextView
-        android:id="@+id/techniqueTitle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="100dp"
-        android:layout_marginLeft="15dp"
-        android:layout_marginRight="16dp"
-        android:textSize="12pt"
+    <FrameLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/topPanel"
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        >
+        <ImageView
+            android:id="@+id/mainThumbnail"
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            android:layout_gravity="center"
+            android:src="@mipmap/image_placeholder"/>
+        <TextView
+            android:id="@+id/techniqueTitle"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_margin="@dimen/text_margin"
+            android:background="#888888"
+            android:fontFamily="cousine"
+            android:gravity="bottom|left|center_vertical"
+            android:padding="10dp"
+            android:textAppearance="?attr/textAppearanceListItem"
+            android:textColor="@android:color/white"
+            android:textSize="24sp" />
+    </FrameLayout>
 
-    <ImageView
-        android:id="@+id/mainThumbnail"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="2dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintBottom_toBottomOf="@+id/techniqueTitle"
-        android:src="@mipmap/ic_launcher"
-        tools:src="@tools:sample/avatars" /> <!-- figure out how to make it clearer-->
+    <ImageButton
+        android:id="@+id/btnDislike"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:src="@drawable/unliked"
+        android:background="@color/white"
+        app:layout_constraintStart_toStartOf="@+id/topPanel"
+        app:layout_constraintTop_toBottomOf="@+id/topPanel" />
+
+    <ImageButton
+        android:id="@+id/btnLike"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:src="@drawable/liked"
+        android:background="@color/white"
+        app:layout_constraintStart_toStartOf="@+id/topPanel"
+        app:layout_constraintTop_toBottomOf="@+id/topPanel" />
 
     <TextView
         android:id="@+id/techniqueDesc"
@@ -36,10 +61,8 @@
         android:layout_marginBottom="8dp"
         android:textSize="8pt"
         android:text="Description"
-        app:layout_constraintBottom_toTopOf="@+id/editTechnique"
-        app:layout_constraintStart_toStartOf="@+id/techniqueTitle"
-        app:layout_constraintTop_toBottomOf="@+id/mainThumbnail"
-        app:layout_constraintVertical_bias="0.1"/>
+        app:layout_constraintStart_toStartOf="@+id/topPanel"
+        app:layout_constraintTop_toBottomOf="@+id/btnDislike" />
 
     <TextView
         android:id="@+id/techniqueAuthors"
@@ -49,7 +72,7 @@
         android:layout_marginTop="8dp"
         android:layout_marginBottom="8dp"
         android:text="Authors: "
-        app:layout_constraintStart_toStartOf="@+id/techniqueTitle"
+        app:layout_constraintStart_toStartOf="@+id/topPanel"
         app:layout_constraintTop_toBottomOf="@+id/techniqueDesc" />
 
     <TextView
@@ -59,7 +82,7 @@
         android:textSize="8pt"
         android:layout_marginTop="8dp"
         android:layout_marginBottom="8dp"
-        app:layout_constraintStart_toStartOf="@+id/techniqueTitle"
+        app:layout_constraintStart_toStartOf="@+id/topPanel"
         app:layout_constraintTop_toBottomOf="@+id/techniqueAuthors" />
     />
 
@@ -70,25 +93,9 @@
         android:textSize="8pt"
         android:layout_marginTop="8dp"
         android:layout_marginBottom="8dp"
-        app:layout_constraintStart_toStartOf="@+id/techniqueTitle"
+        app:layout_constraintStart_toStartOf="@+id/topPanel"
         app:layout_constraintTop_toBottomOf="@+id/techniqueIngredientslist" />
     />
-
-    <ImageButton
-        android:id="@+id/btnDislike"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toBottomOf="@+id/techniqueDesc"
-        android:src="@android:drawable/btn_star_big_off" />
-
-    <ImageButton
-        android:id="@+id/btnLike"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toBottomOf="@+id/techniqueDesc"
-        android:src="@android:drawable/btn_star_big_on" />
 
     <TextView
         android:id="@+id/techniqueTagslist"
@@ -98,7 +105,7 @@
         android:layout_marginTop="8dp"
         android:layout_marginBottom="8dp"
         android:text="Keywords: "
-        app:layout_constraintStart_toStartOf="@+id/techniqueTitle"
+        app:layout_constraintStart_toStartOf="@+id/topPanel"
         app:layout_constraintTop_toBottomOf="@+id/techniqueStepslist" />
 
     <ImageButton
