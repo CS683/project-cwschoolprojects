@@ -88,15 +88,11 @@ class TechniqueListRecyclerViewAdapter(
                 image = Bitmap.createScaledBitmap(largeBitmap, w, h, true)
             }
             catch (e: Exception) {
-                // Uses default image
-                Log.d("debug", e.message.toString())
             }
             return image
         }
         override fun onPostExecute(result: Bitmap?) {
-            Log.d("debug", "post execution")
             if (result != null) {
-                Log.d("debug", result.toString())
                 holder.imageView.setImageBitmap(result)
             }
         }

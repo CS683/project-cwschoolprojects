@@ -26,9 +26,18 @@ interface TechniqueDao {
     @Query("SELECT * FROM techniques")
     fun getAllTechniques(): LiveData<List<Technique>>
 
-    @Query("SELECT * FROM techniques where id = :techniqueId")
+    @Query("SELECT * FROM techniques WHERE id = :techniqueId")
     fun searchTechnique(techniqueId: Long): LiveData<Technique>
 
     @Query("SELECT * FROM techniques WHERE title like :techniqueTitle")
     fun searchTechniquesByTitle(techniqueTitle:String): LiveData<List<Technique>>
+
+    @Query("SELECT ingredients FROM techniques WHERE id = :techniqueId")
+    fun getIngredientForTechnique(techniqueId: Long): LiveData<List<String>>
+
+    @Query("SELECT steps FROM techniques WHERE id = :techniqueId")
+    fun getStepsForTechnique(techniqueId: Long): LiveData<List<String>>
+
+    @Query("SELECT tags FROM techniques WHERE id = :techniqueId")
+    fun getTagsForTechnique(techniqueId: Long): LiveData<List<String>>
 }

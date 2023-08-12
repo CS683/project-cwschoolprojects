@@ -3,7 +3,6 @@ package bu.edu.littledropsoftechniques.datalayer.Technique
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import androidx.room.TypeConverter
-import bu.edu.littledropsoftechniques.datalayer.Ingredient.Ingredient
 import com.google.gson.Gson
 
 @Entity(tableName = "techniques")

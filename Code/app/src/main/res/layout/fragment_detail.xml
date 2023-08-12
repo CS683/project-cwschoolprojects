@@ -1,119 +1,170 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/main"
-    android:padding="25dp"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".fragments.DetailFragment">
-
-    <FrameLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        android:id="@+id/topPanel"
+    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/main"
+        android:padding="25dp"
         android:layout_width="match_parent"
-        android:layout_height="150dp"
-        app:layout_constraintStart_toStartOf="parent"
-        >
-        <ImageView
-            android:id="@+id/mainThumbnail"
+        android:layout_height="match_parent"
+        tools:context=".fragments.DetailFragment">
+
+        <FrameLayout
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            android:id="@+id/topPanel"
             android:layout_width="match_parent"
-            android:layout_height="150dp"
-            android:layout_gravity="center"
-            android:src="@mipmap/image_placeholder"/>
-        <TextView
-            android:id="@+id/techniqueTitle"
-            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            app:layout_constraintStart_toStartOf="parent"
+            >
+            <ImageView
+                android:id="@+id/mainThumbnail"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:layout_gravity="center"
+                android:src="@mipmap/image_placeholder"/>
+            <TextView
+                android:id="@+id/techniqueTitle"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_margin="@dimen/text_margin"
+                android:background="#888888"
+                android:fontFamily="cousine"
+                android:gravity="bottom|left|center_vertical"
+                android:padding="10dp"
+                android:textAppearance="?attr/textAppearanceListItem"
+                android:textColor="@android:color/white"
+                android:textSize="24sp" />
+        </FrameLayout>
+
+        <ImageButton
+            android:id="@+id/btnDislike"
+            android:layout_width="50dp"
             android:layout_height="50dp"
-            android:layout_margin="@dimen/text_margin"
-            android:background="#888888"
-            android:fontFamily="cousine"
-            android:gravity="bottom|left|center_vertical"
-            android:padding="10dp"
-            android:textAppearance="?attr/textAppearanceListItem"
-            android:textColor="@android:color/white"
-            android:textSize="24sp" />
-    </FrameLayout>
+            android:src="@drawable/unliked"
+            android:background="@color/white"
+            app:layout_constraintStart_toStartOf="@+id/topPanel"
+            app:layout_constraintTop_toBottomOf="@+id/topPanel" />
 
-    <ImageButton
-        android:id="@+id/btnDislike"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:src="@drawable/unliked"
-        android:background="@color/white"
-        app:layout_constraintStart_toStartOf="@+id/topPanel"
-        app:layout_constraintTop_toBottomOf="@+id/topPanel" />
+        <ImageButton
+            android:id="@+id/btnLike"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:background="@android:color/transparent"
+            android:src="@drawable/liked"
+            app:layout_constraintStart_toStartOf="@+id/topPanel"
+            app:layout_constraintTop_toBottomOf="@+id/topPanel" />
 
-    <ImageButton
-        android:id="@+id/btnLike"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:src="@drawable/liked"
-        android:background="@color/white"
-        app:layout_constraintStart_toStartOf="@+id/topPanel"
-        app:layout_constraintTop_toBottomOf="@+id/topPanel" />
+        <TextView
+            android:id="@+id/techniqueDesc"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            android:textSize="8pt"
+            android:text="Description"
+            app:layout_constraintStart_toStartOf="@+id/topPanel"
+            app:layout_constraintTop_toBottomOf="@+id/btnDislike" />
 
-    <TextView
-        android:id="@+id/techniqueDesc"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:layout_marginBottom="8dp"
-        android:textSize="8pt"
-        android:text="Description"
-        app:layout_constraintStart_toStartOf="@+id/topPanel"
-        app:layout_constraintTop_toBottomOf="@+id/btnDislike" />
+        <TextView
+            android:id="@+id/techniqueAuthorsSecTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="8pt"
+            android:layout_marginTop="25dp"
+            android:layout_marginBottom="8dp"
+            android:text="Authors:"
+            app:layout_constraintStart_toStartOf="@+id/topPanel"
+            app:layout_constraintTop_toBottomOf="@+id/techniqueDesc" />
 
-    <TextView
-        android:id="@+id/techniqueAuthors"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="8pt"
-        android:layout_marginTop="8dp"
-        android:layout_marginBottom="8dp"
-        android:text="Authors: "
-        app:layout_constraintStart_toStartOf="@+id/topPanel"
-        app:layout_constraintTop_toBottomOf="@+id/techniqueDesc" />
+        <TextView
+            android:id="@+id/techniqueAuthors"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="8pt"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            android:layout_marginLeft="16dp"
+            app:layout_constraintStart_toStartOf="@+id/topPanel"
+            app:layout_constraintTop_toBottomOf="@+id/techniqueAuthorsSecTitle" />
 
-    <TextView
-        android:id="@+id/techniqueIngredientslist"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textSize="8pt"
-        android:layout_marginTop="8dp"
-        android:layout_marginBottom="8dp"
-        app:layout_constraintStart_toStartOf="@+id/topPanel"
-        app:layout_constraintTop_toBottomOf="@+id/techniqueAuthors" />
-    />
+        <TextView
+            android:id="@+id/techniqueIngredientslistSecTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="8pt"
+            android:layout_marginTop="25dp"
+            android:layout_marginBottom="8dp"
+            android:text="Ingredients:"
+            app:layout_constraintStart_toStartOf="@+id/topPanel"
+            app:layout_constraintTop_toBottomOf="@+id/techniqueAuthors" />
 
-    <TextView
-        android:id="@+id/techniqueStepslist"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textSize="8pt"
-        android:layout_marginTop="8dp"
-        android:layout_marginBottom="8dp"
-        app:layout_constraintStart_toStartOf="@+id/topPanel"
-        app:layout_constraintTop_toBottomOf="@+id/techniqueIngredientslist" />
-    />
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/techniqueIngredientslist"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            android:layout_marginLeft="16dp"
+            app:layoutManager="LinearLayoutManager"
+            tools:context=".fragments.DetailsFragment"
+            tools:listitem="@layout/fragment_string_item"
+            app:layout_constraintStart_toStartOf="@+id/topPanel"
+            app:layout_constraintTop_toBottomOf="@+id/techniqueIngredientslistSecTitle" />
+        />
 
-    <TextView
-        android:id="@+id/techniqueTagslist"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="8pt"
-        android:layout_marginTop="8dp"
-        android:layout_marginBottom="8dp"
-        android:text="Keywords: "
-        app:layout_constraintStart_toStartOf="@+id/topPanel"
-        app:layout_constraintTop_toBottomOf="@+id/techniqueStepslist" />
+        <TextView
+            android:id="@+id/techniqueStepslistSecTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="8pt"
+            android:layout_marginTop="25dp"
+            android:layout_marginBottom="8dp"
+            android:text="Steps:"
+            app:layout_constraintStart_toStartOf="@+id/topPanel"
+            app:layout_constraintTop_toBottomOf="@+id/techniqueIngredientslist" />
 
-    <ImageButton
-        android:id="@+id/editTechnique"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@android:drawable/ic_menu_edit"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent" />
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/techniqueStepslist"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            android:layout_marginLeft="16dp"
+            app:layoutManager="LinearLayoutManager"
+            tools:context=".fragments.DetailsFragment"
+            tools:listitem="@layout/fragment_string_item"
+            app:layout_constraintStart_toStartOf="@+id/topPanel"
+            app:layout_constraintTop_toBottomOf="@+id/techniqueStepslistSecTitle" />
+        />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <TextView
+            android:id="@+id/techniqueTagslistSecTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="8pt"
+            android:layout_marginTop="25dp"
+            android:layout_marginBottom="8dp"
+            android:text="Tags: "
+            app:layout_constraintStart_toStartOf="@+id/topPanel"
+            app:layout_constraintTop_toBottomOf="@+id/techniqueStepslist" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/techniqueTagslist"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            android:layout_marginLeft="16dp"
+            app:layoutManager="LinearLayoutManager"
+            tools:context=".fragments.DetailsFragment"
+            tools:listitem="@layout/fragment_string_item"
+            app:layout_constraintStart_toStartOf="@+id/topPanel"
+            app:layout_constraintTop_toBottomOf="@+id/techniqueTagslistSecTitle" />
+        />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</ScrollView>

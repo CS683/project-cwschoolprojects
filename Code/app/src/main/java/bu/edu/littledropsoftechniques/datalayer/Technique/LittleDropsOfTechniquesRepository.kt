@@ -38,6 +38,18 @@ class LittleDropsOfTechniquesRepository (
         return techniqueDao.searchTechniquesByTitle(projTitle)
     }
 
+    suspend fun getIngredientForTechnique(techniqueId: Long): LiveData<List<String>> {
+        return techniqueDao.getIngredientForTechnique(techniqueId)
+    }
+
+    suspend fun getStepsForTechnique(techniqueId: Long): LiveData<List<String>> {
+        return techniqueDao.getStepsForTechnique(techniqueId)
+    }
+
+    suspend fun getTagsForTechnique(techniqueId: Long): LiveData<List<String>> {
+        return techniqueDao.getTagsForTechnique(techniqueId)
+    }
+
     suspend fun count(): LiveData<Int> {
         return techniqueDao.count()
     }
