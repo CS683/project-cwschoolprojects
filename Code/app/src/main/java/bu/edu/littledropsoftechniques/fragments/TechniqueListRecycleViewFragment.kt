@@ -1,5 +1,6 @@
 package bu.edu.littledropsoftechniques.fragments
 
+import android.content.Context
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -23,7 +24,7 @@ import bu.edu.littledropsoftechniques.viewmodels.CurTechniqueViewModel
  * A fragment representing a list of Techniques.
  */
 class TechniqueListRecycleViewFragment : Fragment() {
-//    lateinit var adapter: TechniqueListRecyclerViewAdapter
+    lateinit var techniqueListAdapter: TechniqueListRecyclerViewAdapter
     private var _binding: FragmentTechniqueListRecyclerViewBinding? = null
     private val binding get() = _binding!!
     private var columnCount = 1
@@ -51,6 +52,10 @@ class TechniqueListRecycleViewFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        var sharedPref = activity?.getSharedPreferences("favoritesOnlyOn", Context.MODE_PRIVATE)
+        var showFavoritesOnly = sharedPref?.getBoolean("favoritesOnlyOn", false)?:false
+
+        binding.favToggle.isChecked = showFavoritesOnly
 
         viewModel =
             ViewModelProvider(requireActivity()).get(CurTechniqueViewModel::class.java)
@@ -63,7 +68,7 @@ class TechniqueListRecycleViewFragment : Fragment() {
                 else -> GridLayoutManager(context, columnCount)
             }
 
-            val techniqueListAdapter = TechniqueListRecyclerViewAdapter(
+            techniqueListAdapter = TechniqueListRecyclerViewAdapter(
                 object : TechniqueListRecyclerViewAdapter.OnTechniqueClickListener {
                     override fun onTechniqueClick(technique: Technique) {
                         viewModel.setCurTechnique(technique)
@@ -73,7 +78,8 @@ class TechniqueListRecycleViewFragment : Fragment() {
             this.adapter = techniqueListAdapter
 
             listViewModel.techniqueList.observe(viewLifecycleOwner, Observer {
-                techniqueListAdapter.replaceItems(it)
+                Log.d("debug", "in observer")
+                techniqueListAdapter.replaceItems(it, showFavoritesOnly, binding.searchTechniques.query.toString())
                 viewModel.initCurTechnique(techniqueListAdapter.getTechnique(0))
             })
 
@@ -85,7 +91,7 @@ class TechniqueListRecycleViewFragment : Fragment() {
         binding.addTechnique.setOnClickListener {
             val action = actionTechniqueListRecycleViewFragmentToAddFragment()
             it.findNavController().navigate(action)
-            Log.d("navigation", "Navigating to add technique page.")
+            //Log.d("navigation", "Navigating to add technique page.")
         }
 
         binding.searchTechniques.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
@@ -98,35 +104,59 @@ class TechniqueListRecycleViewFragment : Fragment() {
                 // calling a method to filter our recycler view.
 
                 val trimmedMsg = msg.trim()
-                filter(trimmedMsg)
+//                filter(trimmedMsg)
+
+                techniqueListAdapter.replaceItems(listViewModel.techniqueList.value, binding.favToggle.isChecked, trimmedMsg)
 
                 return true
             }
         })
-    }
 
-    fun filter(text: String) {
-        // creating a new array list to filter our data.
-        var filteredTechniques: List<Technique> = mutableListOf()
-        val currentTechniques = listViewModel.techniqueList.value
+        binding.favToggle.setOnCheckedChangeListener { _, isChecked ->
+            val editor = sharedPref?.edit()
+            editor?.putBoolean("favoritesOnlyOn", isChecked)
+            editor?.commit()
 
-        if (currentTechniques != null) {
-            // running a for loop to compare elements.
-            for (item in currentTechniques) {
-                Log.d("debug", item.tags.toString())
-                if (text.toString() == "" ||
-                    item.title.lowercase().contains(text.lowercase()) ||
-                    item.tags.toString().lowercase().contains(text.lowercase())) {
-                    filteredTechniques += listOf(item)
-                }
-            }
-        }
-        if (filteredTechniques.isNotEmpty()) {
-            // at last we are passing that filtered
-            // list to our adapter class
-            (binding.techniquelist.adapter as TechniqueListRecyclerViewAdapter?)?.filterList(filteredTechniques)
+            techniqueListAdapter.replaceItems(listViewModel.techniqueList.value, isChecked, binding.searchTechniques.query.toString())
         }
     }
+//
+//    fun filter(text: String) {
+//        // creating a new array list to filter our data.
+//        var filteredTechniques: List<Technique> = mutableListOf()
+//        val currentTechniques = listViewModel.techniqueList.value
+//
+////        listViewModel.techniqueList.observe(viewLifecycleOwner, Observer {
+////            for (item in it) {
+////                if (text == "" ||
+////                    item.title.lowercase().contains(text.lowercase()) ||
+////                    item.tags.toString().lowercase().contains(text.lowercase())) {
+////                    filteredTechniques += listOf(item)
+////                }
+////            }
+////        })
+////        Log.d("debug", "filtered: " + filteredTechniques.toString())
+//
+//        Log.d("debug", "Current techniques (should be fav only)" + currentTechniques.toString())
+//
+//        if (currentTechniques != null) {
+//            // running a for loop to compare elements.
+//            for (item in currentTechniques) {
+//                Log.d("debug", item.tags.toString())
+//                if (text.toString() == "" ||
+//                    item.title.lowercase().contains(text.lowercase()) ||
+//                    item.tags.toString().lowercase().contains(text.lowercase())) {
+//                    filteredTechniques += listOf(item)
+//                }
+//            }
+//        }
+//        if (filteredTechniques.isNotEmpty()) {
+//            // at last we are passing that filtered
+//            // list to our adapter class
+//            Log.d("debug", "Replacing after filtering")
+//            (binding.techniquelist.adapter as TechniqueListRecyclerViewAdapter?)?.replaceItems(filteredTechniques, showFavoritesOnly)
+//        }
+//    }
 
     companion object {
 

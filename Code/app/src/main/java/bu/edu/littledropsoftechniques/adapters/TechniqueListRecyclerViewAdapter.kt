@@ -21,10 +21,40 @@ class TechniqueListRecyclerViewAdapter(
     ): RecyclerView.Adapter<TechniqueListRecyclerViewAdapter.ViewHolder>() {
 
     private val techniques = mutableListOf<Technique>()
-    fun replaceItems(myTechniques: List<Technique>) {
-        techniques.clear()
-        techniques.addAll(myTechniques)
-        notifyDataSetChanged()
+    fun replaceItems(myTechniques: List<Technique>?, showFavoritesOnly: Boolean?, searchText: String?) {
+        if (myTechniques != null) {
+            var showFavoritesOnly = showFavoritesOnly ?: false
+            var filterText = searchText ?: ""
+            val filteredProjects = mutableListOf<Technique>()
+
+            if (showFavoritesOnly) {
+                myTechniques.forEachIndexed { index, project ->
+                    if (project.isLiked && (filterText == "" ||
+                        project.title.lowercase().contains(filterText.lowercase()) ||
+                        project.tags.toString().lowercase().contains(filterText.lowercase()))
+                    ) {
+                        filteredProjects.add(project)
+                    }
+                }
+                Log.d("debug", "filtered: " + filteredProjects.toString())
+                techniques.clear()
+                techniques.addAll(filteredProjects)
+            } else {
+                myTechniques.forEachIndexed { index, project ->
+                    if (filterText == "" ||
+                        project.title.lowercase().contains(filterText.lowercase()) ||
+                        project.tags.toString().lowercase().contains(filterText.lowercase())
+                    ) {
+                        filteredProjects.add(project)
+                    }
+                }
+                Log.d("debug", "filtered: " + filteredProjects.toString())
+                techniques.clear()
+                techniques.addAll(filteredProjects)
+            }
+
+            notifyDataSetChanged()
+        }
     }
 
     interface OnTechniqueClickListener {
@@ -68,11 +98,12 @@ class TechniqueListRecyclerViewAdapter(
         }
 
     }
-    fun filterList(filteredTechniques: List<Technique>) {
-        techniques.clear()
-        techniques.addAll(filteredTechniques)
-        notifyDataSetChanged()
-    }
+//    fun filterList(filteredTechniques: List<Technique>) {
+//        var showFavoritesOnly = showFavoritesOnly?:false
+//        techniques.clear()
+//        techniques.addAll(filteredTechniques)
+//        notifyDataSetChanged()
+//    }
 
     @SuppressLint("StaticFieldLeak")
     @Suppress("DEPRECATION")

@@ -40,10 +40,10 @@ class AddFragment : Fragment() {
         viewModel =
             ViewModelProvider(requireActivity()).get(CurTechniqueViewModel::class.java)
 
-        Log.d("debug", "Setting listeners")
+        //Log.d("debug", "Setting listeners")
         binding.submitAdd.setOnClickListener {
 
-            Log.d("debug", "Getting new technique values.")
+            //Log.d("debug", "Getting new technique values.")
             var newTitle = binding.techniqueTitleAdd.text.toString()
             var newDescription = binding.techniqueDescAdd.text.toString()
             var newAuthors = listOf(binding.techniqueAuthorsAdd.text.toString())
@@ -51,7 +51,7 @@ class AddFragment : Fragment() {
             var newSteps = listOf(binding.techniqueStepslistAdd.text.toString())
             var newTags = listOf(binding.techniqueTagslistAdd.text.toString())
 
-            Log.d("debug", "Creating technique object")
+            //Log.d("debug", "Creating technique object")
             val newTechnique = Technique(
                 0,
                 newTitle,
@@ -64,22 +64,22 @@ class AddFragment : Fragment() {
                 newTags
             )
 
-            Log.d("debug", "Adding technique to mutable list")
+            //Log.d("debug", "Adding technique to mutable list")
             listViewModel.addTechnique(newTechnique)
 
-            Log.d("debug", "Setting new technique to current project")
+            //Log.d("debug", "Setting new technique to current project")
             viewModel.setCurTechnique(newTechnique)
 
             val action = actionAddFragmentToTechniqueListRecycleViewFragment()
             it.findNavController().navigate(action)
-            Log.d("navigation", "Navigating back to home page.")
+            //Log.d("navigation", "Navigating back to home page.")
         }
 
         binding.cancelAdd.setOnClickListener {
-            Log.d("debug", "User cancelled add page.")
+            //Log.d("debug", "User cancelled add page.")
             val action = actionAddFragmentToTechniqueListRecycleViewFragment()
             it.findNavController().navigate(action)
-            Log.d("navigation", "Navigating back to home page.")
+            //Log.d("navigation", "Navigating back to home page.")
         }
     }
 }

@@ -70,11 +70,11 @@ class DetailFragment : Fragment() {
         viewModel =
             ViewModelProvider(requireActivity()).get(CurTechniqueViewModel::class.java)
 
-        Log.d("debug", "Gathering all Detail UI components")
+        //Log.d("debug", "Gathering all Detail UI components")
         var liked = view.findViewById<ImageButton>(R.id.btnLike)
         var disliked = view.findViewById<ImageButton>(R.id.btnDislike)
 
-        Log.d("debug", "Setting values of project")
+        //Log.d("debug", "Setting values of project")
         viewModel.curTechnique.observe(viewLifecycleOwner, Observer {
             binding.techniqueTitle.text =  it?.title?:"".uppercase()
             binding.techniqueDesc.text = it?.description?:""
@@ -129,7 +129,7 @@ class DetailFragment : Fragment() {
         disliked.setOnClickListener { onClickedStar(view) }
     }
     private fun onClickedStar(view: View) {
-        Log.d("event", "Clicked Star")
+        //Log.d("event", "Clicked Star")
         var currentLikedStatus = viewModel.curTechnique.value?.isLiked?:true
 
         viewModel.updateCurTechnique(
@@ -150,12 +150,12 @@ class DetailFragment : Fragment() {
         val projLiked =  view.findViewById<ImageButton>(R.id.btnLike)
         val projDisliked =  view.findViewById<ImageButton>(R.id.btnDislike)
         if (viewModel.curTechnique.value?.isLiked?:true) {
-            Log.d("changes", "Project liked")
+            //Log.d("changes", "Project liked")
             projLiked.visibility = View.VISIBLE
             projDisliked.visibility = View.INVISIBLE
         }
         else {
-            Log.d("changes", "Project unliked")
+            //Log.d("changes", "Project unliked")
             projLiked.visibility = View.INVISIBLE
             projDisliked.visibility = View.VISIBLE
         }
