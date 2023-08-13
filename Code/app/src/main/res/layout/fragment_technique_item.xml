@@ -31,4 +31,24 @@
         android:textColor="@android:color/white"
         android:textSize="24sp" />
 
+    <ImageButton
+        android:id="@+id/btnDislike"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginLeft="300dp"
+        android:src="@drawable/unliked"
+        android:translationZ="90dp"
+        android:background="@android:color/transparent"/>
+
+    <ImageButton
+        android:id="@+id/btnLike"
+        android:layout_width="48dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginLeft="300dp"
+        android:translationZ="90dp"
+        android:background="@android:color/transparent"
+        android:src="@drawable/liked" />
+
 </androidx.cardview.widget.CardView>

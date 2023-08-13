@@ -12,14 +12,20 @@ class StepsListRecyclerViewAdapter(
     private val steps = mutableListOf<String>()
 
     fun replaceStepItems(mySteps: List<String>) {
-        val ingredientsSplit = mutableListOf<String>()
+        val stepsSplit = mutableListOf<String>()
+        val stepsSplitFormatted = mutableListOf<String>()
 
         steps.clear()
 
         for (step in mySteps) {
-            ingredientsSplit.addAll(step.replace("]", "").replace("[", "").replace("\"", "").split(",").toList())
+            stepsSplit.addAll(step.split(",").toList())
         }
-        steps.addAll(ingredientsSplit)
+
+        for (step in stepsSplit){
+            stepsSplitFormatted.add(step.replace("]", "").replace("[", "").replace("\"", "").trim())
+        }
+
+        steps.addAll(stepsSplitFormatted)
         notifyDataSetChanged()
     }
 

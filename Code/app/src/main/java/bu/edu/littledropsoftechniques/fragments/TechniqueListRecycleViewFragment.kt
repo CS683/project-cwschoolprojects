@@ -3,22 +3,25 @@ package bu.edu.littledropsoftechniques.fragments
 import android.content.Context
 import android.os.Bundle
 import android.util.Log
-import androidx.fragment.app.Fragment
-import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.LinearLayoutManager
 import android.view.LayoutInflater
 import android.view.View
+import android.view.View.OnFocusChangeListener
 import android.view.ViewGroup
+import android.view.inputmethod.InputMethodManager
 import android.widget.SearchView
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
-import bu.edu.littledropsoftechniques.datalayer.Technique.Technique
+import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
 import bu.edu.littledropsoftechniques.adapters.TechniqueListRecyclerViewAdapter
-import bu.edu.littledropsoftechniques.viewmodels.TechniqueListViewModel
 import bu.edu.littledropsoftechniques.databinding.FragmentTechniqueListRecyclerViewBinding
-import bu.edu.littledropsoftechniques.fragments.TechniqueListRecycleViewFragmentDirections.*
+import bu.edu.littledropsoftechniques.datalayer.Technique.Technique
+import bu.edu.littledropsoftechniques.fragments.TechniqueListRecycleViewFragmentDirections.actionTechniqueListRecycleViewFragmentToAddFragment
 import bu.edu.littledropsoftechniques.viewmodels.CurTechniqueViewModel
+import bu.edu.littledropsoftechniques.viewmodels.TechniqueListViewModel
+
 
 /**
  * A fragment representing a list of Techniques.
@@ -53,7 +56,7 @@ class TechniqueListRecycleViewFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         var sharedPref = activity?.getSharedPreferences("favoritesOnlyOn", Context.MODE_PRIVATE)
-        var showFavoritesOnly = sharedPref?.getBoolean("favoritesOnlyOn", false)?:false
+        var showFavoritesOnly = sharedPref?.getBoolean("favoritesOnlyOn", false) ?: false
 
         binding.favToggle.isChecked = showFavoritesOnly
 
@@ -62,7 +65,7 @@ class TechniqueListRecycleViewFragment : Fragment() {
         listViewModel =
             ViewModelProvider(this).get(TechniqueListViewModel::class.java)
 
-        binding.techniquelist.apply{
+        binding.techniquelist.apply {
             layoutManager = when {
                 columnCount <= 1 -> LinearLayoutManager(context)
                 else -> GridLayoutManager(context, columnCount)
@@ -73,13 +76,36 @@ class TechniqueListRecycleViewFragment : Fragment() {
                     override fun onTechniqueClick(technique: Technique) {
                         viewModel.setCurTechnique(technique)
                     }
-                })
+                },
+                object : TechniqueListRecyclerViewAdapter.OnFavoriteClickListener {
+                    override fun onFavoriteClick(technique: Technique) {
+                        var position = technique.id - 1
+                        viewModel.setCurTechnique(techniqueListAdapter.getTechnique(position))
+                        var currentLikedStatus = viewModel.curTechnique.value?.isLiked ?: true
+
+                        viewModel.updateCurTechnique(
+                            viewModel.curTechnique.value?.title ?: "".uppercase(),
+                            viewModel.curTechnique.value?.description ?: "",
+                            viewModel.curTechnique.value?.authors ?: listOf(),
+                            viewModel.curTechnique.value?.ingredients ?: listOf(),
+                            viewModel.curTechnique.value?.steps ?: listOf(),
+                            viewModel.curTechnique.value?.mainPhotoRef ?: "",
+                            !currentLikedStatus,
+                            viewModel.curTechnique.value?.tags ?: listOf()
+                        )
+                    }
+                }
+            )
 
             this.adapter = techniqueListAdapter
 
             listViewModel.techniqueList.observe(viewLifecycleOwner, Observer {
                 Log.d("debug", "in observer")
-                techniqueListAdapter.replaceItems(it, showFavoritesOnly, binding.searchTechniques.query.toString())
+                techniqueListAdapter.replaceItems(
+                    it,
+                    showFavoritesOnly,
+                    binding.searchTechniques.query.toString()
+                )
                 viewModel.initCurTechnique(techniqueListAdapter.getTechnique(0))
             })
 
@@ -104,9 +130,11 @@ class TechniqueListRecycleViewFragment : Fragment() {
                 // calling a method to filter our recycler view.
 
                 val trimmedMsg = msg.trim()
-//                filter(trimmedMsg)
-
-                techniqueListAdapter.replaceItems(listViewModel.techniqueList.value, binding.favToggle.isChecked, trimmedMsg)
+                techniqueListAdapter.replaceItems(
+                    listViewModel.techniqueList.value,
+                    binding.favToggle.isChecked,
+                    trimmedMsg
+                )
 
                 return true
             }
@@ -117,46 +145,25 @@ class TechniqueListRecycleViewFragment : Fragment() {
             editor?.putBoolean("favoritesOnlyOn", isChecked)
             editor?.commit()
 
-            techniqueListAdapter.replaceItems(listViewModel.techniqueList.value, isChecked, binding.searchTechniques.query.toString())
+            techniqueListAdapter.replaceItems(
+                listViewModel.techniqueList.value,
+                isChecked,
+                binding.searchTechniques.query.toString()
+            )
         }
+
+        binding.searchTechniques.setOnQueryTextFocusChangeListener(OnFocusChangeListener { v, hasFocus ->
+            Log.d("debug", "Made it")
+            if (!hasFocus) {
+                val inputManager = requireContext().getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+                inputManager.hideSoftInputFromWindow(
+                    binding.searchTechniques.getWindowToken(),
+                    InputMethodManager.HIDE_NOT_ALWAYS
+                )
+            }
+        })
+
     }
-//
-//    fun filter(text: String) {
-//        // creating a new array list to filter our data.
-//        var filteredTechniques: List<Technique> = mutableListOf()
-//        val currentTechniques = listViewModel.techniqueList.value
-//
-////        listViewModel.techniqueList.observe(viewLifecycleOwner, Observer {
-////            for (item in it) {
-////                if (text == "" ||
-////                    item.title.lowercase().contains(text.lowercase()) ||
-////                    item.tags.toString().lowercase().contains(text.lowercase())) {
-////                    filteredTechniques += listOf(item)
-////                }
-////            }
-////        })
-////        Log.d("debug", "filtered: " + filteredTechniques.toString())
-//
-//        Log.d("debug", "Current techniques (should be fav only)" + currentTechniques.toString())
-//
-//        if (currentTechniques != null) {
-//            // running a for loop to compare elements.
-//            for (item in currentTechniques) {
-//                Log.d("debug", item.tags.toString())
-//                if (text.toString() == "" ||
-//                    item.title.lowercase().contains(text.lowercase()) ||
-//                    item.tags.toString().lowercase().contains(text.lowercase())) {
-//                    filteredTechniques += listOf(item)
-//                }
-//            }
-//        }
-//        if (filteredTechniques.isNotEmpty()) {
-//            // at last we are passing that filtered
-//            // list to our adapter class
-//            Log.d("debug", "Replacing after filtering")
-//            (binding.techniquelist.adapter as TechniqueListRecyclerViewAdapter?)?.replaceItems(filteredTechniques, showFavoritesOnly)
-//        }
-//    }
 
     companion object {
 

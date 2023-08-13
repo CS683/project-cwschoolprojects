@@ -12,13 +12,19 @@ class IngredientsListRecyclerViewAdapter(
     private val ingredients = mutableListOf<String>()
     fun replaceIngredientItems(myIngredients: List<String>) {
         val ingredientsSplit = mutableListOf<String>()
+        val ingredientsSplitFormatted = mutableListOf<String>()
 
         ingredients.clear()
 
         for (ingredient in myIngredients) {
-            ingredientsSplit.addAll(ingredient.replace("]", "").replace("[", "").replace("\"", "").split(",").toList())
+            ingredientsSplit.addAll(ingredient.split(",").toList())
         }
-        ingredients.addAll(ingredientsSplit)
+
+        for (step in ingredientsSplit){
+            ingredientsSplitFormatted.add(step.replace("]", "").replace("[", "").replace("\"", "").trim())
+        }
+
+        ingredients.addAll(ingredientsSplitFormatted)
         notifyDataSetChanged()
     }
 

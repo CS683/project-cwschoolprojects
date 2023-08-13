@@ -15,6 +15,9 @@ class StringsListViewModel(application: Application): AndroidViewModel(applicati
     private lateinit var _ingredientsList: LiveData<List<String>>
     private lateinit var _stepsList: LiveData<List<String>>
     private lateinit var _tagsList: LiveData<List<String>>
+    private lateinit var _addIngredientsList: MutableList<String>
+    private lateinit var _addStepsList: MutableList<String>
+    private lateinit var _addTagsList: MutableList<String>
 
     val ingredientsList:LiveData<List<String>>
         get() = _ingredientsList
@@ -25,8 +28,18 @@ class StringsListViewModel(application: Application): AndroidViewModel(applicati
     val tagsList:LiveData<List<String>>
         get() = _tagsList
 
+    val addIngredientsList:MutableList<String>
+        get() = _addIngredientsList
+
+    val addStepsList:MutableList<String>
+        get() = _addStepsList
+
+    val addTagsList:MutableList<String>
+        get() = _addTagsList
+
     fun setTechniqueIngredientsAndSteps(techniqueId: Long) {
 
+        // In this case we are showing an existing technique
         val allIngredients = viewModelScope.async(Dispatchers.IO) {
             littleDropsOfTechniquesRepository.getIngredientForTechnique(techniqueId)
         }
@@ -47,11 +60,22 @@ class StringsListViewModel(application: Application): AndroidViewModel(applicati
         viewModelScope.launch(Dispatchers.IO) {
             _tagsList = allTags.await()
         }
+
+        // In this case we are adding a new technique
+        _addIngredientsList = mutableListOf()
+        _addStepsList = mutableListOf()
+        _addTagsList = mutableListOf()
     }
 
-//    fun addTechnique(technique: String) {
-//        viewModelScope.launch(Dispatchers.IO) {
-//            littleDropsOfTechniquesRepository.addTechnique(technique)
-//        }
-//    }
+    fun addIngredient(ingredient: String) {
+        _addIngredientsList.add(ingredient)
+    }
+
+    fun addStep(step: String) {
+        _addStepsList.add(step)
+    }
+
+    fun addTag(tag: String) {
+        _addTagsList.add(tag)
+    }
 }

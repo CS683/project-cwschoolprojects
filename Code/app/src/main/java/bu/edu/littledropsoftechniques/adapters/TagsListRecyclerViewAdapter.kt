@@ -12,13 +12,19 @@ class TagsListRecyclerViewAdapter(
     private val tags = mutableListOf<String>()
     fun replaceTagItems(myTags: List<String>) {
         val tagsSplit = mutableListOf<String>()
+        val tagsSplitFormatted = mutableListOf<String>()
 
         tags.clear()
 
         for (tag in myTags) {
-            tagsSplit.addAll(tag.replace("]", "").replace("[", "").replace("\"", "").split(",").toList())
+            tagsSplit.addAll(tag.split(",").toList())
         }
-        tags.addAll(tagsSplit)
+
+        for (tag in tagsSplit){
+            tagsSplitFormatted.add(tag.replace("]", "").replace("[", "").replace("\"", "").trim())
+        }
+
+        tags.addAll(tagsSplitFormatted)
         notifyDataSetChanged()
     }
 

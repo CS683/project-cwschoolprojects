@@ -6,18 +6,22 @@ import android.graphics.BitmapFactory
 import android.os.AsyncTask
 import android.util.Log
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.cardview.widget.CardView
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
+import bu.edu.littledropsoftechniques.R
 import bu.edu.littledropsoftechniques.databinding.FragmentTechniqueItemBinding
 import bu.edu.littledropsoftechniques.datalayer.Technique.Technique
 import bu.edu.littledropsoftechniques.fragments.TechniqueListRecycleViewFragmentDirections
 
 class TechniqueListRecyclerViewAdapter(
-        private val onTechniqueClickListener: OnTechniqueClickListener
+        private val onTechniqueClickListener: OnTechniqueClickListener,
+        private val onFavoriteClickListener: OnFavoriteClickListener
     ): RecyclerView.Adapter<TechniqueListRecyclerViewAdapter.ViewHolder>() {
 
     private val techniques = mutableListOf<Technique>()
@@ -58,7 +62,11 @@ class TechniqueListRecyclerViewAdapter(
     }
 
     interface OnTechniqueClickListener {
-        fun onTechniqueClick(technique: Technique);
+        fun onTechniqueClick(technique: Technique)
+    }
+
+    interface OnFavoriteClickListener {
+        fun onFavoriteClick(technique: Technique)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -68,6 +76,23 @@ class TechniqueListRecyclerViewAdapter(
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val technique = techniques[position]
         holder.contentView.text = technique.title.uppercase()
+
+        changeLikedStatus(technique, holder)
+
+        holder.dislikeBtn.setOnClickListener {
+            Log.d("debug", "disliked")
+            onFavoriteClickListener.onFavoriteClick(technique)
+            changeLikedStatus(technique, holder)
+            notifyDataSetChanged()
+        }
+
+        holder.likeBtn.setOnClickListener {
+            Log.d("debug", "liked")
+            onFavoriteClickListener.onFavoriteClick(technique)
+            changeLikedStatus(technique, holder)
+            notifyDataSetChanged()
+        }
+
         holder.cardView.setOnClickListener{
             onTechniqueClickListener.onTechniqueClick(technique)
             val action =
@@ -88,22 +113,17 @@ class TechniqueListRecyclerViewAdapter(
 
     inner class ViewHolder(binding: FragmentTechniqueItemBinding)
         : RecyclerView.ViewHolder(binding.root) {
-//        val idView: TextView = binding.techniqueIdView
         val contentView: TextView = binding.techniqueTitleinCard
         val cardView: CardView = binding.techniqueCard
         val imageView: ImageView = binding.techniqueThumbnail
+        val dislikeBtn: ImageButton = binding.btnDislike
+        val likeBtn: ImageButton = binding.btnLike
 
         override fun toString(): String {
             return super.toString() + " '" + contentView.text.toString().uppercase() + "'"
         }
 
     }
-//    fun filterList(filteredTechniques: List<Technique>) {
-//        var showFavoritesOnly = showFavoritesOnly?:false
-//        techniques.clear()
-//        techniques.addAll(filteredTechniques)
-//        notifyDataSetChanged()
-//    }
 
     @SuppressLint("StaticFieldLeak")
     @Suppress("DEPRECATION")
@@ -126,6 +146,17 @@ class TechniqueListRecyclerViewAdapter(
             if (result != null) {
                 holder.imageView.setImageBitmap(result)
             }
+        }
+    }
+
+    fun changeLikedStatus(technique: Technique, holder: ViewHolder) {
+        if (technique.isLiked) {
+            holder.dislikeBtn.visibility = View.INVISIBLE
+            holder.likeBtn.visibility = View.VISIBLE
+        }
+        else {
+            holder.dislikeBtn.visibility = View.VISIBLE
+            holder.likeBtn.visibility = View.INVISIBLE
         }
     }
 }
