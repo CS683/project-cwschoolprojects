@@ -78,4 +78,16 @@ class StringsListViewModel(application: Application): AndroidViewModel(applicati
     fun addTag(tag: String) {
         _addTagsList.add(tag)
     }
+
+    fun deleteIngredient(ingredient: String) {
+        _addIngredientsList.remove(ingredient)
+    }
+
+    fun deleteStep(step: String) {
+        _addStepsList.remove(step)
+    }
+
+    fun deleteTag(tag: String) {
+        _addTagsList.remove(tag)
+    }
 }

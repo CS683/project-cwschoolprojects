@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import bu.edu.littledropsofingredients.adapters.IngredientsListRecyclerViewAdapter
 import bu.edu.littledropsofingredients.adapters.StepsListRecyclerViewAdapter
 import bu.edu.littledropsofingredients.adapters.TagsListRecyclerViewAdapter
+import bu.edu.littledropsoftechniques.adapters.TechniqueListRecyclerViewAdapter
 import bu.edu.littledropsoftechniques.datalayer.Technique.Technique
 import bu.edu.littledropsoftechniques.viewmodels.TechniqueListViewModel
 import bu.edu.littledropsoftechniques.databinding.FragmentAddBinding
@@ -62,7 +63,13 @@ class AddFragment : Fragment() {
             ViewModelProvider(requireActivity()).get(CurTechniqueViewModel::class.java)
 
         binding.techniqueAddCurrentIngredientsList.apply{
-            ingredientsListAdapter = IngredientsListRecyclerViewAdapter()
+            ingredientsListAdapter = IngredientsListRecyclerViewAdapter(
+                object : IngredientsListRecyclerViewAdapter.OnDeleteClickListener {
+                    override fun onDeleteClick(ingredient: String) {
+                        stringsListViewModel.deleteIngredient(ingredient)
+                        ingredientsListAdapter.replaceIngredientItems(stringsListViewModel.addIngredientsList)
+                    }
+                })
             this.adapter = ingredientsListAdapter
 
             stringsListViewModel.ingredientsList.observe(viewLifecycleOwner, Observer {
@@ -71,7 +78,13 @@ class AddFragment : Fragment() {
         }
 
         binding.techniqueAddCurrentStepsList.apply{
-            stepsListAdapter = StepsListRecyclerViewAdapter()
+            stepsListAdapter = StepsListRecyclerViewAdapter(
+                object : StepsListRecyclerViewAdapter.OnDeleteClickListener {
+                    override fun onDeleteClick(step: String) {
+                        stringsListViewModel.deleteStep(step)
+                        stepsListAdapter.replaceStepItems(stringsListViewModel.addStepsList)
+                    }
+                })
             this.adapter = stepsListAdapter
 
             stringsListViewModel.stepsList.observe(viewLifecycleOwner, Observer {
@@ -80,7 +93,13 @@ class AddFragment : Fragment() {
         }
 
         binding.techniqueAddCurrentTagsList.apply{
-            tagsListAdapter = TagsListRecyclerViewAdapter()
+            tagsListAdapter = TagsListRecyclerViewAdapter(
+                object : TagsListRecyclerViewAdapter.OnDeleteClickListener {
+                    override fun onDeleteClick(tag: String) {
+                        stringsListViewModel.deleteTag(tag)
+                        tagsListAdapter.replaceTagItems(stringsListViewModel.addTagsList)
+                    }
+                })
             this.adapter = tagsListAdapter
 
             stringsListViewModel.tagsList.observe(viewLifecycleOwner, Observer {
@@ -91,13 +110,13 @@ class AddFragment : Fragment() {
         binding.addIngredientBtn.setOnClickListener {
             stringsListViewModel.addIngredient(binding.techniqueIngredientslistAdd.text.toString())
             ingredientsListAdapter.replaceIngredientItems(stringsListViewModel.addIngredientsList)
-            binding.techniqueTagslistAdd.setText("")
+            binding.techniqueIngredientslistAdd.setText("")
         }
 
         binding.addStepBtn.setOnClickListener {
             stringsListViewModel.addStep(binding.techniqueStepslistAdd.text.toString())
             stepsListAdapter.replaceStepItems(stringsListViewModel.addStepsList)
-            binding.techniqueTagslistAdd.setText("")
+            binding.techniqueStepslistAdd.setText("")
         }
 
         binding.addTagBtn.setOnClickListener {

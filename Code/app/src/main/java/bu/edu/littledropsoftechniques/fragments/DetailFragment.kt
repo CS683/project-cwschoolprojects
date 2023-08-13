@@ -89,7 +89,7 @@ class DetailFragment : Fragment() {
                 else -> GridLayoutManager(context, columnCount)
             }
 
-            val ingredientsListAdapter = IngredientsListRecyclerViewAdapter()
+            val ingredientsListAdapter = IngredientsListRecyclerViewAdapter(null)
             this.adapter = ingredientsListAdapter
 
             stringsListViewModel.ingredientsList.observe(viewLifecycleOwner, Observer {
@@ -103,7 +103,7 @@ class DetailFragment : Fragment() {
                 else -> GridLayoutManager(context, columnCount)
             }
 
-            val stepsListAdapter = StepsListRecyclerViewAdapter()
+            val stepsListAdapter = StepsListRecyclerViewAdapter(null)
             this.adapter = stepsListAdapter
 
             stringsListViewModel.stepsList.observe(viewLifecycleOwner, Observer {
@@ -117,7 +117,7 @@ class DetailFragment : Fragment() {
                 else -> GridLayoutManager(context, columnCount)
             }
 
-            val tagsListAdapter = TagsListRecyclerViewAdapter()
+            val tagsListAdapter = TagsListRecyclerViewAdapter(null)
             this.adapter = tagsListAdapter
 
             stringsListViewModel.tagsList.observe(viewLifecycleOwner, Observer {
