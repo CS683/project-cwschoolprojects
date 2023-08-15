@@ -131,6 +131,7 @@ class AddFragment : Fragment() {
             //Log.d("debug", "Getting new technique values.")
             var newTitle = binding.techniqueTitleAdd.text.toString()
             var newDescription = binding.techniqueDescAdd.text.toString()
+            var thumbnailUrl = binding.techniqueUrlAdd.text.toString()
             var newAuthors = listOf(binding.techniqueAuthorsAdd.text.toString())
             var newIngredients = stringsListViewModel.addIngredientsList
             var newSteps = stringsListViewModel.addStepsList
@@ -144,7 +145,7 @@ class AddFragment : Fragment() {
                 newAuthors,
                 newIngredients,
                 newSteps,
-                "",
+                thumbnailUrl,
                 false,
                 newTags
             )

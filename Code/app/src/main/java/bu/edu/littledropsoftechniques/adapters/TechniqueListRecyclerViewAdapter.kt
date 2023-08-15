@@ -106,7 +106,13 @@ class TechniqueListRecyclerViewAdapter(
 
     fun getTechnique(pos: Int): Technique {
         if (techniques.size > 0)
-            return techniques[pos]
+            for (technique in techniques) {
+                Log.d("debug", technique.id.toString())
+                Log.d("debug", pos.toString())
+                if (technique.id == pos) {
+                    return technique
+                }
+            }
 
         return Technique(0,"","", listOf(""), listOf(""), listOf(""),"", false, listOf(""))
     }

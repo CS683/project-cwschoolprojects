@@ -20,6 +20,7 @@
             android:layout_marginLeft="16dp"
             android:layout_marginTop="16dp"
             android:textSize="16pt"
+            android:longClickable="true"
             android:hint="Enter title..."
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />

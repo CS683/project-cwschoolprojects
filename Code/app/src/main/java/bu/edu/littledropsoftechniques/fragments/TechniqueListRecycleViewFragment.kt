@@ -79,7 +79,7 @@ class TechniqueListRecycleViewFragment : Fragment() {
                 },
                 object : TechniqueListRecyclerViewAdapter.OnFavoriteClickListener {
                     override fun onFavoriteClick(technique: Technique) {
-                        var position = technique.id - 1
+                        var position = technique.id
                         viewModel.setCurTechnique(techniqueListAdapter.getTechnique(position))
                         var currentLikedStatus = viewModel.curTechnique.value?.isLiked ?: true
 
@@ -106,7 +106,7 @@ class TechniqueListRecycleViewFragment : Fragment() {
                     showFavoritesOnly,
                     binding.searchTechniques.query.toString()
                 )
-                viewModel.initCurTechnique(techniqueListAdapter.getTechnique(0))
+                viewModel.initCurTechnique(techniqueListAdapter.getTechnique(1))
             })
 
             viewModel.curTechnique.observe(viewLifecycleOwner, Observer {
